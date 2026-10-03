@@ -1,0 +1,1774 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Projects | A&A Enterprises
+{% endblock %}
+
+
+{% block css %}
+
+<style>
+
+/* =========================================================
+   PROJECT PAGE
+========================================================= */
+
+.project-page {
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(221,170,45,0.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 50%,
+            rgba(255,255,255,0.05),
+            transparent 25%
+        ),
+        #050505;
+
+    color: #ffffff;
+
+    overflow: hidden;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.projects-hero {
+
+    position: relative;
+
+    min-height: 72vh;
+
+    display: flex;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,0.94) 0%,
+            rgba(0,0,0,0.72) 42%,
+            rgba(0,0,0,0.40) 100%
+        ),
+
+        url("{{ url_for('static', filename='images/projects/project1.jpg') }}")
+        center/cover no-repeat;
+
+}
+
+
+/* 3D light layer */
+
+.projects-hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        radial-gradient(
+            circle at 70% 30%,
+            rgba(231,184,59,0.18),
+            transparent 30%
+        );
+
+    pointer-events: none;
+
+}
+
+
+/* glass reflection */
+
+.projects-hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 650px;
+
+    height: 650px;
+
+    right: -220px;
+
+    top: -180px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.04);
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+        inset 0 0 80px rgba(255,255,255,0.03),
+        0 0 100px rgba(0,0,0,0.3);
+
+    transform:
+        rotate(20deg);
+
+    pointer-events: none;
+
+}
+
+
+.projects-hero-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    width: 100%;
+
+    padding:
+        140px 7% 100px;
+
+}
+
+
+.project-eyebrow {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    color: #e7b83d;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 6px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 25px;
+
+}
+
+
+.project-eyebrow::before {
+
+    content: "";
+
+    width: 55px;
+
+    height: 1px;
+
+    background: #e7b83d;
+
+}
+
+
+.projects-hero h1 {
+
+    max-width: 850px;
+
+    margin: 0;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(55px, 8vw, 115px);
+
+    line-height: 0.92;
+
+    font-weight: 600;
+
+    letter-spacing: -4px;
+
+}
+
+
+.projects-hero h1 span {
+
+    color: #e7b83d;
+
+}
+
+
+.projects-hero p {
+
+    max-width: 680px;
+
+    margin-top: 35px;
+
+    color: rgba(255,255,255,0.75);
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.projects-intro {
+
+    position: relative;
+
+    padding: 110px 0;
+
+    background: #080808;
+
+}
+
+
+.section-label {
+
+    color: #e7b83d;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+
+}
+
+
+.section-title {
+
+    margin-top: 15px;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(40px, 5vw, 70px);
+
+    line-height: 1;
+
+    color: #ffffff;
+
+}
+
+
+.section-description {
+
+    max-width: 700px;
+
+    margin-top: 25px;
+
+    color: rgba(255,255,255,0.65);
+
+    line-height: 1.9;
+
+}
+
+
+/* =========================================================
+   PROJECT GRID
+========================================================= */
+
+.projects-section {
+
+    padding:
+        30px 0 120px;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(225,175,50,0.07),
+            transparent 35%
+        ),
+
+        #080808;
+
+}
+
+
+.project-card-wrapper {
+
+    perspective:
+        1400px;
+
+}
+
+
+.project-card {
+
+    position: relative;
+
+    height: 100%;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(255,255,255,0.13);
+
+    border-radius:
+        22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.11),
+            rgba(255,255,255,0.025)
+        );
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+
+        0 25px 60px
+        rgba(0,0,0,0.45),
+
+        inset 0 1px 0
+        rgba(255,255,255,0.08);
+
+    transform-style:
+        preserve-3d;
+
+    transition:
+        transform 0.5s ease,
+        box-shadow 0.5s ease,
+        border-color 0.5s ease;
+
+}
+
+
+.project-card:hover {
+
+    transform:
+        translateY(-15px)
+        rotateX(2deg)
+        rotateY(-2deg);
+
+    border-color:
+        rgba(231,184,61,0.55);
+
+    box-shadow:
+
+        0 35px 80px
+        rgba(0,0,0,0.65),
+
+        0 0 35px
+        rgba(231,184,61,0.08),
+
+        inset 0 1px 0
+        rgba(255,255,255,0.15);
+
+}
+
+
+/* =========================================================
+   PROJECT IMAGE
+========================================================= */
+
+.project-image-wrap {
+
+    position: relative;
+
+    height: 320px;
+
+    overflow: hidden;
+
+    background: #111;
+
+}
+
+
+.project-image-wrap::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,0.65),
+            transparent 45%
+        );
+
+    pointer-events: none;
+
+}
+
+
+.project-image {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform 0.8s cubic-bezier(.2,.7,.2,1),
+        filter 0.5s ease;
+
+}
+
+
+.project-card:hover .project-image {
+
+    transform:
+        scale(1.08);
+
+    filter:
+        brightness(1.08)
+        contrast(1.04);
+
+}
+
+
+/* Project number */
+
+.project-number {
+
+    position: absolute;
+
+    z-index: 3;
+
+    top: 18px;
+
+    left: 18px;
+
+    width: 48px;
+
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(0,0,0,0.55);
+
+    border:
+        1px solid rgba(255,255,255,0.25);
+
+    backdrop-filter:
+        blur(12px);
+
+    color:
+        #e7b83d;
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+
+}
+
+
+/* =========================================================
+   PROJECT CONTENT
+========================================================= */
+
+.project-content {
+
+    position: relative;
+
+    padding: 30px;
+
+}
+
+
+.project-badge {
+
+    display: inline-block;
+
+    padding:
+        7px 13px;
+
+    border:
+        1px solid
+        rgba(231,184,61,0.45);
+
+    border-radius:
+        50px;
+
+    color:
+        #e7b83d;
+
+    background:
+        rgba(231,184,61,0.08);
+
+    font-size:
+        10px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        1.5px;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.project-content h3 {
+
+    margin:
+        18px 0 12px;
+
+    color:
+        #ffffff;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        30px;
+
+}
+
+
+.project-content p {
+
+    color:
+        rgba(255,255,255,0.62);
+
+    line-height:
+        1.75;
+
+    font-size:
+        14px;
+
+}
+
+
+.project-meta {
+
+    margin-top:
+        25px;
+
+    padding-top:
+        20px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.1);
+
+}
+
+
+.project-meta-row {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+
+    margin-bottom:
+        10px;
+
+    font-size:
+        13px;
+
+}
+
+
+.project-meta-row span:first-child {
+
+    color:
+        rgba(255,255,255,0.45);
+
+}
+
+
+.project-meta-row span:last-child {
+
+    color:
+        #ffffff;
+
+    text-align:
+        right;
+
+}
+
+
+.project-button {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    margin-top:
+        15px;
+
+    padding:
+        13px 20px;
+
+    color:
+        #050505 !important;
+
+    background:
+        #e7b83d;
+
+    text-decoration:
+        none !important;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        1.5px;
+
+    transition:
+        all 0.3s ease;
+
+}
+
+
+.project-button:hover {
+
+    background:
+        #ffffff;
+
+    transform:
+        translateX(5px);
+
+}
+
+
+/* =========================================================
+   SERVICES INCLUDED
+========================================================= */
+
+.included-section {
+
+    position:
+        relative;
+
+    padding:
+        110px 0;
+
+    background:
+        #050505;
+
+}
+
+
+.included-card {
+
+    height:
+        100%;
+
+    padding:
+        40px 30px;
+
+    text-align:
+        center;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.1);
+
+    border-radius:
+        20px;
+
+    background:
+        rgba(255,255,255,0.045);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 20px 50px
+        rgba(0,0,0,0.35);
+
+    transition:
+        transform 0.4s ease,
+        border-color 0.4s ease,
+        background 0.4s ease;
+
+}
+
+
+.included-card:hover {
+
+    transform:
+        translateY(-10px);
+
+    border-color:
+        rgba(231,184,61,0.5);
+
+    background:
+        rgba(231,184,61,0.07);
+
+}
+
+
+.included-icon {
+
+    width:
+        70px;
+
+    height:
+        70px;
+
+    margin:
+        0 auto 20px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        50%;
+
+    color:
+        #e7b83d;
+
+    border:
+        1px solid
+        rgba(231,184,61,0.4);
+
+    background:
+        rgba(231,184,61,0.08);
+
+    font-size:
+        24px;
+
+}
+
+
+.included-card h4 {
+
+    color:
+        #ffffff;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+}
+
+
+.included-card p {
+
+    color:
+        rgba(255,255,255,0.55);
+
+    font-size:
+        14px;
+
+    line-height:
+        1.7;
+
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.project-stats {
+
+    position:
+        relative;
+
+    padding:
+        100px 0;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #080808,
+            #111111
+        );
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.08);
+
+}
+
+
+.stat-box {
+
+    padding:
+        25px;
+
+    text-align:
+        center;
+
+}
+
+
+.stat-number {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(45px, 5vw, 75px);
+
+    color:
+        #e7b83d;
+
+    line-height:
+        1;
+
+}
+
+
+.stat-label {
+
+    margin-top:
+        12px;
+
+    color:
+        rgba(255,255,255,0.55);
+
+    font-size:
+        12px;
+
+    letter-spacing:
+        2px;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.project-cta {
+
+    position:
+        relative;
+
+    padding:
+        120px 20px;
+
+    text-align:
+        center;
+
+    overflow:
+        hidden;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(231,184,61,0.14),
+            transparent 45%
+        ),
+
+        #050505;
+
+}
+
+
+.project-cta::before {
+
+    content: "";
+
+    position:
+        absolute;
+
+    width:
+        500px;
+
+    height:
+        500px;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border:
+        1px solid
+        rgba(231,184,61,0.15);
+
+    border-radius:
+        50%;
+
+    box-shadow:
+        0 0 100px
+        rgba(231,184,61,0.06);
+
+}
+
+
+.project-cta-content {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+}
+
+
+.project-cta h2 {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(40px, 6vw, 75px);
+
+    color:
+        #ffffff;
+
+}
+
+
+.project-cta p {
+
+    max-width:
+        600px;
+
+    margin:
+        20px auto 35px;
+
+    color:
+        rgba(255,255,255,0.6);
+
+    line-height:
+        1.8;
+
+}
+
+
+.cta-button {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        15px;
+
+    padding:
+        17px 30px;
+
+    color:
+        #050505 !important;
+
+    background:
+        #e7b83d;
+
+    text-decoration:
+        none !important;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        2px;
+
+    transition:
+        all 0.3s ease;
+
+}
+
+
+.cta-button:hover {
+
+    background:
+        #ffffff;
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 15px 40px
+        rgba(255,255,255,0.12);
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 991px) {
+
+    .projects-hero {
+
+        min-height:
+            65vh;
+
+    }
+
+    .projects-hero-content {
+
+        padding:
+            150px 8% 80px;
+
+    }
+
+    .project-image-wrap {
+
+        height:
+            280px;
+
+    }
+
+}
+
+
+@media (max-width: 767px) {
+
+    .projects-hero {
+
+        min-height:
+            70vh;
+
+        background-position:
+            center;
+
+    }
+
+    .projects-hero-content {
+
+        padding:
+            130px 25px 70px;
+
+    }
+
+    .projects-hero h1 {
+
+        font-size:
+            55px;
+
+        letter-spacing:
+            -2px;
+
+    }
+
+    .projects-hero p {
+
+        font-size:
+            15px;
+
+    }
+
+    .projects-intro,
+    .included-section,
+    .project-stats {
+
+        padding:
+            75px 0;
+
+    }
+
+    .project-image-wrap {
+
+        height:
+            250px;
+
+    }
+
+    .project-content {
+
+        padding:
+            24px;
+
+    }
+
+}
+
+
+/* =========================================================
+   3D FLOATING ANIMATION
+========================================================= */
+
+@keyframes projectFloat {
+
+    0% {
+
+        transform:
+            translateY(0px);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-7px);
+
+    }
+
+    100% {
+
+        transform:
+            translateY(0px);
+
+    }
+
+}
+
+
+.project-card-wrapper:nth-child(odd) .project-card {
+
+    animation:
+        projectFloat 6s ease-in-out infinite;
+
+}
+
+
+.project-card-wrapper:nth-child(even) .project-card {
+
+    animation:
+        projectFloat 7s ease-in-out infinite reverse;
+
+}
+
+
+.project-card:hover {
+
+    animation:
+        none;
+
+}
+
+
+</style>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="project-page">
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="projects-hero">
+
+        <div class="projects-hero-content">
+
+            <div class="project-eyebrow">
+
+                IDEAS &nbsp; | &nbsp; EXECUTION &nbsp; | &nbsp; EXCELLENCE
+
+            </div>
+
+
+            <h1>
+
+                Projects That
+
+                <span>
+                    Make Brands Visible
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                Explore selected signage, branding, fabrication
+                and installation projects delivered by A&A Enterprises.
+                Every project combines thoughtful design, quality
+                materials and professional execution.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         INTRO
+    ====================================================== -->
+
+    <section class="projects-intro">
+
+        <div class="container">
+
+            <div class="section-label">
+
+                OUR WORK
+
+            </div>
+
+
+            <h2 class="section-title">
+
+                Built With Purpose.
+                <br>
+                Finished With Precision.
+
+            </h2>
+
+
+            <p class="section-description">
+
+                From corporate environments to retail spaces,
+                our projects are developed around the identity,
+                visibility and functional requirements of each
+                client. Explore the work below.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PROJECTS
+    ====================================================== -->
+
+    <section class="projects-section">
+
+        <div class="container">
+
+            <div class="row g-4">
+
+
+                {% for i in range(1,7) %}
+
+
+                <div class="col-lg-4 col-md-6 project-card-wrapper">
+
+
+                    <article class="project-card">
+
+
+                        <!-- IMAGE -->
+
+                        <div class="project-image-wrap">
+
+
+                            <div class="project-number">
+
+                                {% if i < 10 %}
+                                    0{{ i }}
+                                {% else %}
+                                    {{ i }}
+                                {% endif %}
+
+                            </div>
+
+
+                            <!--
+                                IMPORTANT:
+                                Existing project images are NOT changed.
+                            -->
+
+                            <img
+                                src="{{ url_for(
+                                    'static',
+                                    filename='images/projects/project' ~ i ~ '.jpg'
+                                ) }}"
+                                class="project-image"
+                                alt="A&A Enterprises Project {{ i }}">
+
+
+                        </div>
+
+
+
+                        <!-- CONTENT -->
+
+                        <div class="project-content">
+
+
+                            <span class="project-badge">
+
+                                Corporate Signage
+
+                            </span>
+
+
+                            <h3>
+
+                                Project {{ i }}
+
+                            </h3>
+
+
+                            <p>
+
+                                Professional signage solution designed,
+                                manufactured and installed by
+                                A&A Enterprises using quality materials
+                                and detailed finishing.
+
+                            </p>
+
+
+                            <div class="project-meta">
+
+
+                                <div class="project-meta-row">
+
+                                    <span>
+                                        Client
+                                    </span>
+
+                                    <span>
+                                        ABC Corporation
+                                    </span>
+
+                                </div>
+
+
+                                <div class="project-meta-row">
+
+                                    <span>
+                                        Location
+                                    </span>
+
+                                    <span>
+                                        Bengaluru
+                                    </span>
+
+                                </div>
+
+
+                                <div class="project-meta-row">
+
+                                    <span>
+                                        Scope
+                                    </span>
+
+                                    <span>
+                                        Design • Fabrication • Installation
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <a
+                                href="{{ url_for('contact') }}"
+                                class="project-button">
+
+                                REQUEST SIMILAR PROJECT
+
+                                <i class="fas fa-arrow-right"></i>
+
+                            </a>
+
+
+                        </div>
+
+
+                    </article>
+
+
+                </div>
+
+
+                {% endfor %}
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         SERVICES INCLUDED
+    ====================================================== -->
+
+    <section class="included-section">
+
+        <div class="container">
+
+
+            <div class="text-center mb-5">
+
+                <div class="section-label">
+
+                    COMPLETE EXECUTION
+
+                </div>
+
+
+                <h2 class="section-title">
+
+                    From Concept
+                    <br>
+                    To Installation
+
+                </h2>
+
+            </div>
+
+
+            <div class="row g-4">
+
+
+                <!-- DESIGN -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="included-card">
+
+                        <div class="included-icon">
+
+                            <i class="fas fa-pencil-ruler"></i>
+
+                        </div>
+
+                        <h4>
+
+                            Design
+
+                        </h4>
+
+                        <p>
+
+                            Creative concepts developed
+                            around your brand identity.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FABRICATION -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="included-card">
+
+                        <div class="included-icon">
+
+                            <i class="fas fa-industry"></i>
+
+                        </div>
+
+                        <h4>
+
+                            Fabrication
+
+                        </h4>
+
+                        <p>
+
+                            Professional manufacturing using
+                            suitable quality materials.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DELIVERY -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="included-card">
+
+                        <div class="included-icon">
+
+                            <i class="fas fa-truck"></i>
+
+                        </div>
+
+                        <h4>
+
+                            Delivery
+
+                        </h4>
+
+                        <p>
+
+                            Carefully coordinated transportation
+                            to your project location.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- INSTALLATION -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="included-card">
+
+                        <div class="included-icon">
+
+                            <i class="fas fa-tools"></i>
+
+                        </div>
+
+                        <h4>
+
+                            Installation
+
+                        </h4>
+
+                        <p>
+
+                            Professional installation by
+                            experienced technicians.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         STATISTICS
+    ====================================================== -->
+
+    <section class="project-stats">
+
+        <div class="container">
+
+            <div class="row">
+
+
+                <div class="col-md-3 col-6">
+
+                    <div class="stat-box">
+
+                        <div class="stat-number">
+
+                            500+
+
+                        </div>
+
+                        <div class="stat-label">
+
+                            Projects Completed
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-md-3 col-6">
+
+                    <div class="stat-box">
+
+                        <div class="stat-number">
+
+                            250+
+
+                        </div>
+
+                        <div class="stat-label">
+
+                            Happy Clients
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-md-3 col-6">
+
+                    <div class="stat-box">
+
+                        <div class="stat-number">
+
+                            15+
+
+                        </div>
+
+                        <div class="stat-label">
+
+                            Years Experience
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-md-3 col-6">
+
+                    <div class="stat-box">
+
+                        <div class="stat-number">
+
+                            100%
+
+                        </div>
+
+                        <div class="stat-label">
+
+                            Quality
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CTA
+    ====================================================== -->
+
+    <section class="project-cta">
+
+        <div class="project-cta-content">
+
+            <div class="section-label">
+
+                START YOUR PROJECT
+
+            </div>
+
+
+            <h2>
+
+                Have a Project
+                <br>
+                In Mind?
+
+            </h2>
+
+
+            <p>
+
+                Tell us about your signage or branding requirement.
+                Our team can help transform your idea into a
+                professionally finished solution.
+
+            </p>
+
+
+            <a
+                href="{{ url_for('contact') }}"
+                class="cta-button">
+
+                GET A QUOTE
+
+                <i class="fas fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+</div>
+
+{% endblock %}

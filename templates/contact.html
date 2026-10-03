@@ -1,0 +1,3217 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Contact | A&A Enterprises
+{% endblock %}
+
+
+{% block css %}
+
+<style>
+
+/* =========================================================
+   A&A ENTERPRISES
+   LIVE / INTERACTIVE CONTACT PAGE
+========================================================= */
+
+:root {
+    --gold: #e7b83d;
+    --gold-light: #ffd96a;
+    --black: #020202;
+    --white: #ffffff;
+    --muted: rgba(255,255,255,.62);
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.contact-page {
+
+    position: relative;
+
+    min-height: 100vh;
+
+    color: #fff;
+
+    background: #020202;
+
+    overflow: hidden;
+
+    isolation: isolate;
+}
+
+
+/* =========================================================
+   LIVE AI BACKGROUND
+========================================================= */
+
+.contact-ai-bg {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100vh;
+
+    z-index: -10;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 25%,
+            rgba(231,184,61,.10),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 10% 80%,
+            rgba(231,184,61,.06),
+            transparent 30%
+        ),
+
+        #020202;
+}
+
+
+#contactNetwork {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    opacity: .9;
+}
+
+
+/* =========================================================
+   FUTURISTIC GRID
+========================================================= */
+
+.contact-grid {
+
+    position: absolute;
+
+    width: 200%;
+
+    height: 200%;
+
+    left: -50%;
+
+    top: -20%;
+
+    opacity: .10;
+
+    background-image:
+
+        linear-gradient(
+            rgba(231,184,61,.12) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(231,184,61,.12) 1px,
+            transparent 1px
+        );
+
+    background-size: 70px 70px;
+
+    transform:
+        perspective(700px)
+        rotateX(62deg);
+
+    animation:
+        contactGridMove 16s linear infinite;
+
+    mask-image:
+        radial-gradient(
+            ellipse at center,
+            black 15%,
+            transparent 72%
+        );
+
+    -webkit-mask-image:
+        radial-gradient(
+            ellipse at center,
+            black 15%,
+            transparent 72%
+        );
+}
+
+
+@keyframes contactGridMove {
+
+    0% {
+
+        transform:
+            perspective(700px)
+            rotateX(62deg)
+            translateY(0);
+
+    }
+
+    100% {
+
+        transform:
+            perspective(700px)
+            rotateX(62deg)
+            translateY(140px);
+
+    }
+}
+
+
+/* =========================================================
+   GLOW ORBS
+========================================================= */
+
+.contact-orb {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(100px);
+
+    opacity: .35;
+}
+
+
+.contact-orb-1 {
+
+    width: 420px;
+
+    height: 420px;
+
+    left: -180px;
+
+    top: 10%;
+
+    background:
+        rgba(231,184,61,.18);
+
+    animation:
+        contactOrb1 10s ease-in-out infinite;
+}
+
+
+.contact-orb-2 {
+
+    width: 500px;
+
+    height: 500px;
+
+    right: -200px;
+
+    top: 40%;
+
+    background:
+        rgba(231,184,61,.12);
+
+    animation:
+        contactOrb2 12s ease-in-out infinite;
+}
+
+
+.contact-orb-3 {
+
+    width: 250px;
+
+    height: 250px;
+
+    left: 45%;
+
+    bottom: 0;
+
+    background:
+        rgba(255,255,255,.035);
+
+    animation:
+        contactOrb3 9s ease-in-out infinite;
+}
+
+
+@keyframes contactOrb1 {
+
+    0%,100% {
+        transform:
+            translate(0,0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(100px,80px)
+            scale(1.25);
+    }
+}
+
+
+@keyframes contactOrb2 {
+
+    0%,100% {
+        transform:
+            translate(0,0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(-100px,-80px)
+            scale(1.2);
+    }
+}
+
+
+@keyframes contactOrb3 {
+
+    0%,100% {
+        transform:
+            translate(0,0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(-60px,-80px)
+            scale(1.3);
+    }
+}
+
+
+/* =========================================================
+   SCANNING LINE
+========================================================= */
+
+.contact-scan {
+
+    position: absolute;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 1px;
+
+    top: -10px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(231,184,61,.9),
+            transparent
+        );
+
+    box-shadow:
+        0 0 25px
+        rgba(231,184,61,.6);
+
+    animation:
+        contactScan 7s linear infinite;
+}
+
+
+@keyframes contactScan {
+
+    0% {
+        top: -10px;
+    }
+
+    100% {
+        top: 100%;
+    }
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.contact-page > *:not(.contact-ai-bg) {
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.contact-hero {
+
+    min-height: 92vh;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.96) 0%,
+            rgba(0,0,0,.80) 45%,
+            rgba(0,0,0,.35) 100%
+        ),
+
+        url("/static/images/contact/contact-bg.jpg")
+
+        center / cover no-repeat;
+}
+
+
+.contact-hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 650px;
+
+    height: 650px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(231,184,61,.15);
+
+    right: -180px;
+
+    top: -180px;
+
+    box-shadow:
+
+        0 0 100px
+        rgba(231,184,61,.04),
+
+        inset 0 0 100px
+        rgba(231,184,61,.04);
+
+    animation:
+        heroCircle 9s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+
+@keyframes heroCircle {
+
+    0%,100% {
+
+        transform:
+            rotate(0deg)
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            rotate(8deg)
+            translateY(25px);
+
+    }
+}
+
+
+.contact-hero-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    padding:
+        140px 7%
+        100px;
+
+    width: 100%;
+
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.contact-label {
+
+    color:
+        var(--gold);
+
+    letter-spacing:
+        6px;
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
+    margin-bottom:
+        28px;
+
+    text-transform:
+        uppercase;
+}
+
+
+.contact-label::before {
+
+    content: "";
+
+    display: inline-block;
+
+    width: 45px;
+
+    height: 1px;
+
+    background:
+        var(--gold);
+
+    vertical-align:
+        middle;
+
+    margin-right:
+        14px;
+
+    box-shadow:
+        0 0 12px
+        var(--gold);
+}
+
+
+/* =========================================================
+   HERO TITLE
+========================================================= */
+
+.contact-hero h1 {
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(55px,8vw,115px);
+
+    line-height:
+        .88;
+
+    letter-spacing:
+        -5px;
+
+    margin:
+        0;
+
+    max-width:
+        950px;
+
+    animation:
+        heroText 1s ease forwards;
+}
+
+
+@keyframes heroText {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(35px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+}
+
+
+.contact-hero h1 span {
+
+    color:
+        var(--gold);
+
+    text-shadow:
+        0 0 35px
+        rgba(231,184,61,.15);
+}
+
+
+.contact-hero-description {
+
+    max-width:
+        650px;
+
+    margin-top:
+        38px;
+
+    font-size:
+        17px;
+
+    line-height:
+        1.8;
+
+    color:
+        rgba(255,255,255,.65);
+}
+
+
+/* =========================================================
+   LIVE STATUS
+========================================================= */
+
+.live-status {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    margin-top:
+        30px;
+
+    padding:
+        11px 18px;
+
+    border:
+        1px solid
+        rgba(231,184,61,.25);
+
+    border-radius:
+        50px;
+
+    background:
+        rgba(231,184,61,.045);
+
+    backdrop-filter:
+        blur(15px);
+
+    color:
+        rgba(255,255,255,.65);
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        2px;
+}
+
+
+.live-dot {
+
+    width:
+        8px;
+
+    height:
+        8px;
+
+    border-radius:
+        50%;
+
+    background:
+        #42ff8b;
+
+    box-shadow:
+        0 0 15px
+        #42ff8b;
+
+    animation:
+        livePulse 1.5s infinite;
+}
+
+
+@keyframes livePulse {
+
+    0%,100% {
+
+        transform:
+            scale(1);
+
+        opacity:
+            1;
+
+    }
+
+    50% {
+
+        transform:
+            scale(.55);
+
+        opacity:
+            .45;
+
+    }
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.contact-actions {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        15px;
+
+    margin-top:
+        35px;
+}
+
+
+.contact-btn-gold {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        14px;
+
+    padding:
+        17px 28px;
+
+    background:
+        var(--gold);
+
+    color:
+        #050505;
+
+    text-decoration:
+        none;
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        2px;
+
+    transition:
+        .35s;
+
+}
+
+
+.contact-btn-gold:hover {
+
+    background:
+        #fff;
+
+    color:
+        #000;
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(231,184,61,.15);
+}
+
+
+.contact-btn-outline {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        14px;
+
+    padding:
+        16px 28px;
+
+    border:
+        1px solid
+        rgba(231,184,61,.65);
+
+    color:
+        #fff;
+
+    text-decoration:
+        none;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        2px;
+
+    transition:
+        .35s;
+
+    background:
+        rgba(255,255,255,.025);
+
+    backdrop-filter:
+        blur(10px);
+}
+
+
+.contact-btn-outline:hover {
+
+    background:
+        rgba(231,184,61,.10);
+
+    color:
+        var(--gold);
+
+    transform:
+        translateY(-5px);
+}
+
+
+/* =========================================================
+   FLOATING CONTACT BUTTONS
+========================================================= */
+
+.contact-floating {
+
+    position:
+        absolute;
+
+    right:
+        7%;
+
+    bottom:
+        70px;
+
+    z-index:
+        5;
+
+    display:
+        flex;
+
+    gap:
+        12px;
+}
+
+
+.floating-icon {
+
+    width:
+        55px;
+
+    height:
+        55px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    background:
+        rgba(255,255,255,.05);
+
+    backdrop-filter:
+        blur(15px);
+
+    border-radius:
+        50%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    color:
+        var(--gold);
+
+    font-size:
+        18px;
+
+    text-decoration:
+        none;
+
+    transition:
+        .35s;
+}
+
+
+.floating-icon:hover {
+
+    transform:
+        translateY(-8px)
+        scale(1.08);
+
+    background:
+        rgba(231,184,61,.12);
+
+    border-color:
+        rgba(231,184,61,.5);
+
+    box-shadow:
+        0 10px 30px
+        rgba(231,184,61,.08);
+}
+
+
+/* =========================================================
+   CONTACT STRIP
+========================================================= */
+
+.contact-strip {
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.08);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.08);
+
+    background:
+        rgba(255,255,255,.025);
+
+    backdrop-filter:
+        blur(20px);
+}
+
+
+.contact-strip-item {
+
+    padding:
+        35px 20px;
+
+    text-align:
+        center;
+
+    border-right:
+        1px solid
+        rgba(255,255,255,.07);
+
+    transition:
+        .3s;
+}
+
+
+.contact-strip-item:hover {
+
+    background:
+        rgba(231,184,61,.035);
+}
+
+
+.contact-strip-item:last-child {
+
+    border-right:
+        none;
+}
+
+
+.contact-strip-item i {
+
+    color:
+        var(--gold);
+
+    font-size:
+        20px;
+
+    margin-bottom:
+        10px;
+}
+
+
+.contact-strip-item span {
+
+    display:
+        block;
+
+    color:
+        rgba(255,255,255,.55);
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        2px;
+
+    text-transform:
+        uppercase;
+}
+
+
+/* =========================================================
+   MAIN CONTACT
+========================================================= */
+
+.contact-main {
+
+    padding:
+        120px 0;
+
+    background:
+        rgba(2,2,2,.72);
+
+    backdrop-filter:
+        blur(4px);
+}
+
+
+.contact-section-title {
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(42px,5vw,70px);
+
+    line-height:
+        1;
+
+    margin-bottom:
+        25px;
+}
+
+
+.contact-section-description {
+
+    color:
+        rgba(255,255,255,.55);
+
+    line-height:
+        1.9;
+
+    max-width:
+        600px;
+}
+
+
+/* =========================================================
+   INFORMATION CARDS
+========================================================= */
+
+.contact-info {
+
+    margin-top:
+        50px;
+}
+
+
+.info-card {
+
+    padding:
+        28px;
+
+    margin-bottom:
+        15px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.09);
+
+    border-radius:
+        18px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    backdrop-filter:
+        blur(15px);
+
+    transition:
+        .4s;
+}
+
+
+.info-card:hover {
+
+    transform:
+        translateX(8px);
+
+    border-color:
+        rgba(231,184,61,.35);
+
+    background:
+        rgba(231,184,61,.045);
+
+}
+
+
+.info-icon {
+
+    width:
+        45px;
+
+    height:
+        45px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(231,184,61,.10);
+
+    color:
+        var(--gold);
+
+    margin-bottom:
+        15px;
+}
+
+
+.info-card h5 {
+
+    margin-bottom:
+        8px;
+
+    font-size:
+        14px;
+}
+
+
+.info-card p {
+
+    margin:
+        0;
+
+    color:
+        rgba(255,255,255,.52);
+
+    line-height:
+        1.7;
+
+    font-size:
+        13px;
+}
+
+
+.info-card a {
+
+    color:
+        rgba(255,255,255,.65);
+
+    text-decoration:
+        none;
+}
+
+
+.info-card a:hover {
+
+    color:
+        var(--gold);
+}
+
+
+/* =========================================================
+   WHATSAPP
+========================================================= */
+
+.whatsapp-card {
+
+    padding:
+        28px;
+
+    border:
+        1px solid
+        rgba(37,211,102,.25);
+
+    border-radius:
+        20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(37,211,102,.08),
+            rgba(255,255,255,.025)
+        );
+
+    margin-top:
+        15px;
+
+    backdrop-filter:
+        blur(15px);
+}
+
+
+.whatsapp-card i {
+
+    color:
+        #25d366;
+
+    font-size:
+        28px;
+}
+
+
+.whatsapp-card h5 {
+
+    margin-top:
+        15px;
+}
+
+
+.whatsapp-card p {
+
+    color:
+        rgba(255,255,255,.50);
+
+    font-size:
+        13px;
+}
+
+
+.whatsapp-link {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    color:
+        #25d366;
+
+    text-decoration:
+        none;
+
+    font-weight:
+        700;
+
+    font-size:
+        12px;
+
+    letter-spacing:
+        1px;
+}
+
+
+/* =========================================================
+   FORM CARD
+========================================================= */
+
+.contact-form-card {
+
+    position:
+        relative;
+
+    padding:
+        45px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    border-radius:
+        28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.10),
+            rgba(255,255,255,.025)
+        );
+
+    backdrop-filter:
+        blur(25px);
+
+    -webkit-backdrop-filter:
+        blur(25px);
+
+    box-shadow:
+
+        0 40px 100px
+        rgba(0,0,0,.45),
+
+        inset
+        0 1px 0
+        rgba(255,255,255,.08);
+
+    transform:
+        perspective(1200px)
+        rotateY(-2deg);
+
+    transition:
+        .5s;
+}
+
+
+.contact-form-card:hover {
+
+    transform:
+        perspective(1200px)
+        rotateY(0deg)
+        translateY(-8px);
+
+    border-color:
+        rgba(231,184,61,.35);
+
+    box-shadow:
+        0 50px 120px
+        rgba(0,0,0,.65);
+}
+
+
+.form-top {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    margin-bottom:
+        35px;
+}
+
+
+.form-top h3 {
+
+    font-size:
+        22px;
+
+    margin:
+        0;
+}
+
+
+.form-number {
+
+    color:
+        var(--gold);
+
+    font-size:
+        12px;
+
+    letter-spacing:
+        3px;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.contact-form label {
+
+    color:
+        rgba(255,255,255,.55);
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        2px;
+
+    text-transform:
+        uppercase;
+
+    margin-bottom:
+        9px;
+}
+
+
+.contact-form .form-control,
+.contact-form .form-select {
+
+    background:
+        rgba(255,255,255,.055);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    color:
+        #fff;
+
+    border-radius:
+        0;
+
+    padding:
+        15px 16px;
+
+    min-height:
+        52px;
+
+    transition:
+        .3s;
+}
+
+
+.contact-form .form-control:focus,
+.contact-form .form-select:focus {
+
+    background:
+        rgba(255,255,255,.08);
+
+    border-color:
+        var(--gold);
+
+    color:
+        #fff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(231,184,61,.08);
+}
+
+
+.contact-form .form-control::placeholder {
+
+    color:
+        rgba(255,255,255,.28);
+}
+
+
+.contact-form .form-select option {
+
+    color:
+        #000;
+}
+
+
+.form-submit {
+
+    width:
+        100%;
+
+    padding:
+        17px;
+
+    margin-top:
+        10px;
+
+    border:
+        none;
+
+    background:
+        var(--gold);
+
+    color:
+        #000;
+
+    font-weight:
+        800;
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        3px;
+
+    transition:
+        .35s;
+
+    cursor:
+        pointer;
+}
+
+
+.form-submit:hover {
+
+    background:
+        #fff;
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(231,184,61,.12);
+}
+
+
+/* =========================================================
+   PROJECT SECTION
+========================================================= */
+
+.project-section {
+
+    padding:
+        110px 0;
+
+    background:
+        rgba(8,8,8,.78);
+
+    backdrop-filter:
+        blur(4px);
+}
+
+
+.project-option {
+
+    padding:
+        30px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    border-radius:
+        18px;
+
+    background:
+        rgba(255,255,255,.025);
+
+    backdrop-filter:
+        blur(15px);
+
+    height:
+        100%;
+
+    transition:
+        .4s;
+}
+
+
+.project-option:hover {
+
+    transform:
+        translateY(-10px);
+
+    border-color:
+        rgba(231,184,61,.4);
+
+    box-shadow:
+        0 25px 60px
+        rgba(0,0,0,.3);
+}
+
+
+.project-option i {
+
+    color:
+        var(--gold);
+
+    font-size:
+        27px;
+
+    margin-bottom:
+        18px;
+}
+
+
+.project-option h5 {
+
+    font-size:
+        15px;
+}
+
+
+.project-option p {
+
+    color:
+        rgba(255,255,255,.45);
+
+    font-size:
+        12px;
+
+    line-height:
+        1.7;
+
+    margin:
+        0;
+}
+
+
+/* =========================================================
+   FINAL CTA
+========================================================= */
+
+.contact-final {
+
+    position:
+        relative;
+
+    padding:
+        150px 20px;
+
+    text-align:
+        center;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(231,184,61,.13),
+            transparent 40%
+        ),
+
+        rgba(5,5,5,.88);
+
+    overflow:
+        hidden;
+}
+
+
+.contact-final::before {
+
+    content:
+        "A&A";
+
+    position:
+        absolute;
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(180px,30vw,500px);
+
+    font-weight:
+        700;
+
+    color:
+        rgba(255,255,255,.015);
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    pointer-events:
+        none;
+}
+
+
+.contact-final-content {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+}
+
+
+.contact-final h2 {
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(48px,7vw,90px);
+
+    line-height:
+        .95;
+}
+
+
+.contact-final h2 span {
+
+    color:
+        var(--gold);
+}
+
+
+.contact-final p {
+
+    max-width:
+        650px;
+
+    margin:
+        25px auto
+        40px;
+
+    color:
+        rgba(255,255,255,.55);
+
+    line-height:
+        1.8;
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+.reveal {
+
+    opacity:
+        0;
+
+    transform:
+        translateY(35px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+
+.reveal.active {
+
+    opacity:
+        1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:991px) {
+
+    .contact-floating {
+
+        right:
+            25px;
+
+        bottom:
+            30px;
+    }
+
+
+    .contact-form-card {
+
+        transform:
+            none;
+    }
+
+
+    .contact-form-card:hover {
+
+        transform:
+            translateY(-6px);
+    }
+
+}
+
+
+@media(max-width:767px) {
+
+    .contact-hero {
+
+        min-height:
+            850px;
+    }
+
+
+    .contact-hero-content {
+
+        padding:
+            130px 25px
+            100px;
+    }
+
+
+    .contact-hero h1 {
+
+        font-size:
+            55px;
+
+        letter-spacing:
+            -2px;
+    }
+
+
+    .contact-hero-description {
+
+        font-size:
+            15px;
+    }
+
+
+    .contact-floating {
+
+        display:
+            none;
+    }
+
+
+    .contact-main,
+    .project-section {
+
+        padding:
+            80px 0;
+    }
+
+
+    .contact-form-card {
+
+        padding:
+            25px;
+
+        border-radius:
+            20px;
+    }
+
+
+    .contact-strip-item {
+
+        border-right:
+            none;
+
+        border-bottom:
+            1px solid
+            rgba(255,255,255,.07);
+    }
+
+
+    .contact-grid {
+
+        background-size:
+            45px 45px;
+
+        opacity:
+            .07;
+    }
+
+}
+
+</style>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="contact-page">
+
+
+<!-- =====================================================
+     LIVE AI BACKGROUND
+====================================================== -->
+
+<div class="contact-ai-bg">
+
+    <canvas id="contactNetwork"></canvas>
+
+    <div class="contact-grid"></div>
+
+    <div class="contact-orb contact-orb-1"></div>
+
+    <div class="contact-orb contact-orb-2"></div>
+
+    <div class="contact-orb contact-orb-3"></div>
+
+    <div class="contact-scan"></div>
+
+</div>
+
+
+
+<!-- =====================================================
+     HERO
+====================================================== -->
+
+<section class="contact-hero">
+
+    <div class="contact-hero-content reveal">
+
+        <div class="contact-label">
+
+            A&A ENTERPRISES / LET'S TALK
+
+        </div>
+
+
+        <h1>
+
+            Let's Build
+
+            <br>
+
+            Something
+
+            <br>
+
+            <span>Visible.</span>
+
+        </h1>
+
+
+        <p class="contact-hero-description">
+
+            Have a new office, retail space, corporate project,
+            hospital, campus or brand that needs to stand out?
+
+            Tell us what you're building. We'll help turn your
+            brand into something people can see, remember and
+            recognize.
+
+        </p>
+
+
+        <!-- LIVE STATUS -->
+
+        <div class="live-status">
+
+            <span class="live-dot"></span>
+
+            AVAILABLE TO DISCUSS YOUR PROJECT
+
+        </div>
+
+
+        <div class="contact-actions">
+
+            <a
+                href="#enquiry"
+                class="contact-btn-gold"
+            >
+
+                START A PROJECT
+
+                <i class="fas fa-arrow-down"></i>
+
+            </a>
+
+
+            <a
+                href="https://wa.me/917406631411"
+                class="contact-btn-outline"
+                target="_blank"
+            >
+
+                <i class="fab fa-whatsapp"></i>
+
+                CHAT ON WHATSAPP
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- FLOATING ICONS -->
+
+    <div class="contact-floating">
+
+        <a
+            href="tel:+917406631411"
+            class="floating-icon"
+            title="Call A&A Enterprises"
+        >
+
+            <i class="fas fa-phone"></i>
+
+        </a>
+
+
+        <a
+            href="mailto:a.aenterprisesbengaluru@gmail.com"
+            class="floating-icon"
+            title="Email A&A Enterprises"
+        >
+
+            <i class="fas fa-envelope"></i>
+
+        </a>
+
+
+        <a
+            href="https://wa.me/917406631411"
+            target="_blank"
+            class="floating-icon"
+            title="WhatsApp"
+        >
+
+            <i class="fab fa-whatsapp"></i>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTACT STRIP
+====================================================== -->
+
+<section class="contact-strip">
+
+    <div class="container-fluid">
+
+        <div class="row g-0">
+
+
+            <div class="col-lg-3 col-6">
+
+                <div class="contact-strip-item">
+
+                    <i class="fas fa-location-dot"></i>
+
+                    <span>
+                        Bengaluru, Karnataka
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3 col-6">
+
+                <div class="contact-strip-item">
+
+                    <i class="fas fa-phone"></i>
+
+                    <span>
+                        +91 74066 31411
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3 col-6">
+
+                <div class="contact-strip-item">
+
+                    <i class="fas fa-envelope"></i>
+
+                    <span>
+                        Email Us
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3 col-6">
+
+                <div class="contact-strip-item">
+
+                    <i class="fas fa-clock"></i>
+
+                    <span>
+                        Mon – Sat / 9 AM – 6 PM
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MAIN CONTACT AREA
+====================================================== -->
+
+<section
+    class="contact-main"
+    id="enquiry"
+>
+
+    <div class="container">
+
+        <div class="row g-5 align-items-start">
+
+
+            <!-- =================================================
+                 LEFT INFORMATION
+            ================================================== -->
+
+            <div class="col-lg-5 reveal">
+
+                <div class="contact-label">
+
+                    START A CONVERSATION
+
+                </div>
+
+
+                <h2 class="contact-section-title">
+
+                    Your Brand.
+
+                    <br>
+
+                    Our Craft.
+
+                    <br>
+
+                    One Statement.
+
+                </h2>
+
+
+                <p class="contact-section-description">
+
+                    From a single signboard to complete corporate
+                    branding, A&A Enterprises handles design,
+                    fabrication, delivery and installation.
+
+                    Send us your requirement and our team can
+                    discuss the right signage solution for your
+                    space and brand.
+
+                </p>
+
+
+                <div class="contact-info">
+
+
+                    <!-- ADDRESS -->
+
+                    <div class="info-card">
+
+                        <div class="info-icon">
+
+                            <i class="fas fa-location-dot"></i>
+
+                        </div>
+
+                        <h5>
+                            Visit Our Office
+                        </h5>
+
+                        <p>
+
+                            Ground Floor,<br>
+
+                            29 1st Cross,<br>
+
+                            JP Nagar 5th Phase,<br>
+
+                            Bengaluru – 560078
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="info-card">
+
+                        <div class="info-icon">
+
+                            <i class="fas fa-phone"></i>
+
+                        </div>
+
+                        <h5>
+                            Call Us
+                        </h5>
+
+                        <p>
+
+                            <a href="tel:+917406631411">
+
+                                +91 74066 31411
+
+                            </a>
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="info-card">
+
+                        <div class="info-icon">
+
+                            <i class="fas fa-envelope"></i>
+
+                        </div>
+
+                        <h5>
+                            Email Us
+                        </h5>
+
+                        <p>
+
+                            <a
+                                href="mailto:a.aenterprisesbengaluru@gmail.com"
+                            >
+
+                                a.aenterprisesbengaluru@gmail.com
+
+                            </a>
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- WHATSAPP -->
+
+                    <div class="whatsapp-card">
+
+                        <i class="fab fa-whatsapp"></i>
+
+                        <h5>
+                            Prefer WhatsApp?
+                        </h5>
+
+                        <p>
+
+                            Send us your requirement,
+                            project photos or drawings directly.
+
+                        </p>
+
+                        <a
+                            href="https://wa.me/917406631411"
+                            target="_blank"
+                            class="whatsapp-link"
+                        >
+
+                            START WHATSAPP CHAT
+
+                            <i class="fas fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ENQUIRY FORM
+            ================================================== -->
+
+            <div class="col-lg-7 reveal">
+
+                <div class="contact-form-card">
+
+
+                    <div class="form-top">
+
+                        <h3>
+                            Tell Us About Your Project
+                        </h3>
+
+                        <div class="form-number">
+                            01 / ENQUIRY
+                        </div>
+
+                    </div>
+
+
+                    <form
+                        action="{{ url_for('contact') }}"
+                        method="POST"
+                        class="contact-form"
+                    >
+
+
+                        <!-- NAME / PHONE -->
+
+                        <div class="row">
+
+
+                            <div class="col-md-6 mb-4">
+
+                                <label>
+                                    Your Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="name"
+                                    class="form-control"
+                                    placeholder="Enter your name"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-6 mb-4">
+
+                                <label>
+                                    Phone Number
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="phone"
+                                    class="form-control"
+                                    placeholder="+91"
+                                    required
+                                >
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- EMAIL / COMPANY -->
+
+                        <div class="row">
+
+
+                            <div class="col-md-6 mb-4">
+
+                                <label>
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    name="email"
+                                    class="form-control"
+                                    placeholder="you@example.com"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-6 mb-4">
+
+                                <label>
+                                    Company
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="company"
+                                    class="form-control"
+                                    placeholder="Company name"
+                                >
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- SERVICE -->
+
+                        <div class="mb-4">
+
+                            <label>
+                                What Do You Need?
+                            </label>
+
+                            <select
+                                name="service"
+                                class="form-select"
+                                required
+                            >
+
+                                <option value="">
+                                    Select a service
+                                </option>
+
+                                <option>
+                                    Corporate Signage
+                                </option>
+
+                                <option>
+                                    LED Signage
+                                </option>
+
+                                <option>
+                                    ACP Sign Boards
+                                </option>
+
+                                <option>
+                                    Acrylic Signage
+                                </option>
+
+                                <option>
+                                    Metal Fabrication
+                                </option>
+
+                                <option>
+                                    Branding Solutions
+                                </option>
+
+                                <option>
+                                    Safety Signage
+                                </option>
+
+                                <option>
+                                    Wayfinding Signage
+                                </option>
+
+                                <option>
+                                    Complete Branding Project
+                                </option>
+
+                                <option>
+                                    Installation
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- MESSAGE -->
+
+                        <div class="mb-4">
+
+                            <label>
+                                Tell Us About The Project
+                            </label>
+
+                            <textarea
+                                name="message"
+                                class="form-control"
+                                rows="6"
+                                placeholder="Tell us about your location, signage requirement, approximate size, timeline or anything else we should know..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <!-- SUBMIT -->
+
+                        <button
+                            type="submit"
+                            class="form-submit"
+                        >
+
+                            SEND PROJECT ENQUIRY
+
+                            <i class="fas fa-arrow-right ms-2"></i>
+
+                        </button>
+
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WHAT CAN WE CREATE
+====================================================== -->
+
+<section class="project-section">
+
+    <div class="container">
+
+
+        <div class="text-center mb-5 reveal">
+
+            <div class="contact-label">
+                WHAT CAN WE CREATE?
+            </div>
+
+            <h2 class="contact-section-title">
+
+                Bring Us Your
+
+                <br>
+
+                <span style="color:#e7b83d;">
+                    Next Project.
+                </span>
+
+            </h2>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-lg-3 col-md-6 reveal">
+
+                <div class="project-option">
+
+                    <i class="fas fa-building"></i>
+
+                    <h5>
+                        Corporate Signage
+                    </h5>
+
+                    <p>
+                        Professional signage and branding
+                        for offices and commercial spaces.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3 col-md-6 reveal">
+
+                <div class="project-option">
+
+                    <i class="fas fa-lightbulb"></i>
+
+                    <h5>
+                        Illuminated Signage
+                    </h5>
+
+                    <p>
+                        LED, backlit, channel letters and
+                        other illuminated brand solutions.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3 col-md-6 reveal">
+
+                <div class="project-option">
+
+                    <i class="fas fa-compass"></i>
+
+                    <h5>
+                        Wayfinding
+                    </h5>
+
+                    <p>
+                        Directional and navigation signage
+                        for large spaces and campuses.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3 col-md-6 reveal">
+
+                <div class="project-option">
+
+                    <i class="fas fa-industry"></i>
+
+                    <h5>
+                        Fabrication
+                    </h5>
+
+                    <p>
+                        Custom metal, ACP, acrylic and
+                        fabrication solutions.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FINAL CTA
+====================================================== -->
+
+<section class="contact-final">
+
+    <div class="contact-final-content reveal">
+
+
+        <div class="contact-label">
+
+            YOUR BRAND DESERVES TO BE SEEN
+
+        </div>
+
+
+        <h2>
+
+            Don't Just
+
+            <br>
+
+            <span>Build A Brand.</span>
+
+            <br>
+
+            Make It Visible.
+
+        </h2>
+
+
+        <p>
+
+            Whether you're opening a new space,
+            refreshing your existing identity or
+            building something completely new —
+            we're ready to talk.
+
+        </p>
+
+
+        <a
+            href="#enquiry"
+            class="contact-btn-gold"
+        >
+
+            START YOUR PROJECT
+
+            <i class="fas fa-arrow-up"></i>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     LIVE AI NETWORK JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* =====================================================
+           CANVAS
+        ====================================================== */
+
+        const canvas =
+            document.getElementById(
+                "contactNetwork"
+            );
+
+
+        if (!canvas) {
+            return;
+        }
+
+
+        const ctx =
+            canvas.getContext("2d");
+
+
+        let width =
+            window.innerWidth;
+
+
+        let height =
+            window.innerHeight;
+
+
+        let particles = [];
+
+
+        const mouse = {
+
+            x: null,
+
+            y: null,
+
+            radius: 190
+
+        };
+
+
+        /* =====================================================
+           RESIZE
+        ====================================================== */
+
+        function resizeCanvas() {
+
+            width =
+                canvas.width =
+                    window.innerWidth;
+
+            height =
+                canvas.height =
+                    window.innerHeight;
+
+        }
+
+
+        /* =====================================================
+           PARTICLE COUNT
+        ====================================================== */
+
+        function getParticleCount() {
+
+            if (
+                window.innerWidth < 600
+            ) {
+
+                return 30;
+
+            }
+
+
+            if (
+                window.innerWidth < 1000
+            ) {
+
+                return 55;
+
+            }
+
+
+            return 90;
+
+        }
+
+
+        /* =====================================================
+           CREATE PARTICLES
+        ====================================================== */
+
+        function createParticles() {
+
+            particles = [];
+
+
+            const total =
+                getParticleCount();
+
+
+            for (
+                let i = 0;
+                i < total;
+                i++
+            ) {
+
+                particles.push({
+
+                    x:
+                        Math.random() *
+                        width,
+
+                    y:
+                        Math.random() *
+                        height,
+
+                    vx:
+                        (
+                            Math.random() -
+                            .5
+                        ) * .30,
+
+                    vy:
+                        (
+                            Math.random() -
+                            .5
+                        ) * .30,
+
+                    size:
+                        Math.random() *
+                        1.8 + .5,
+
+                    pulse:
+                        Math.random() *
+                        Math.PI * 2
+
+                });
+
+            }
+
+        }
+
+
+        /* =====================================================
+           MOUSE
+        ====================================================== */
+
+        window.addEventListener(
+            "mousemove",
+            function (event) {
+
+                mouse.x =
+                    event.clientX;
+
+                mouse.y =
+                    event.clientY;
+
+            }
+        );
+
+
+        window.addEventListener(
+            "mouseleave",
+            function () {
+
+                mouse.x =
+                    null;
+
+                mouse.y =
+                    null;
+
+            }
+        );
+
+
+        /* =====================================================
+           UPDATE
+        ====================================================== */
+
+        function updateParticle(p) {
+
+            p.x += p.vx;
+
+            p.y += p.vy;
+
+
+            if (p.x < -20) {
+
+                p.x =
+                    width + 20;
+
+            }
+
+
+            if (p.x > width + 20) {
+
+                p.x =
+                    -20;
+
+            }
+
+
+            if (p.y < -20) {
+
+                p.y =
+                    height + 20;
+
+            }
+
+
+            if (p.y > height + 20) {
+
+                p.y =
+                    -20;
+
+            }
+
+
+            /* MOUSE FORCE */
+
+            if (
+                mouse.x !== null &&
+                mouse.y !== null
+            ) {
+
+                const dx =
+                    p.x - mouse.x;
+
+                const dy =
+                    p.y - mouse.y;
+
+
+                const distance =
+                    Math.sqrt(
+                        dx * dx +
+                        dy * dy
+                    );
+
+
+                if (
+                    distance <
+                    mouse.radius
+                ) {
+
+                    const force =
+                        (
+                            mouse.radius -
+                            distance
+                        ) /
+                        mouse.radius;
+
+
+                    const angle =
+                        Math.atan2(
+                            dy,
+                            dx
+                        );
+
+
+                    p.x +=
+                        Math.cos(angle) *
+                        force *
+                        1.1;
+
+
+                    p.y +=
+                        Math.sin(angle) *
+                        force *
+                        1.1;
+
+                }
+
+            }
+
+        }
+
+
+        /* =====================================================
+           DRAW PARTICLE
+        ====================================================== */
+
+        function drawParticle(p) {
+
+            p.pulse += .02;
+
+
+            const glow =
+                .6 +
+                Math.sin(
+                    p.pulse
+                ) * .3;
+
+
+            ctx.beginPath();
+
+
+            ctx.arc(
+                p.x,
+                p.y,
+                p.size,
+                0,
+                Math.PI * 2
+            );
+
+
+            ctx.fillStyle =
+                "rgba(231,184,61," +
+                glow +
+                ")";
+
+
+            ctx.shadowBlur =
+                15;
+
+
+            ctx.shadowColor =
+                "rgba(231,184,61,.7)";
+
+
+            ctx.fill();
+
+
+            ctx.shadowBlur =
+                0;
+
+        }
+
+
+        /* =====================================================
+           CONNECT PARTICLES
+        ====================================================== */
+
+        function connectParticles(a,b) {
+
+            const dx =
+                a.x - b.x;
+
+            const dy =
+                a.y - b.y;
+
+
+            const distance =
+                Math.sqrt(
+                    dx * dx +
+                    dy * dy
+                );
+
+
+            const maxDistance =
+                window.innerWidth < 700
+                    ? 95
+                    : 145;
+
+
+            if (
+                distance >
+                maxDistance
+            ) {
+
+                return;
+
+            }
+
+
+            const opacity =
+                (
+                    1 -
+                    distance /
+                    maxDistance
+                ) * .24;
+
+
+            ctx.beginPath();
+
+
+            ctx.moveTo(
+                a.x,
+                a.y
+            );
+
+
+            ctx.lineTo(
+                b.x,
+                b.y
+            );
+
+
+            ctx.strokeStyle =
+                "rgba(231,184,61," +
+                opacity +
+                ")";
+
+
+            ctx.lineWidth =
+                .6;
+
+
+            ctx.stroke();
+
+        }
+
+
+        /* =====================================================
+           ANIMATE
+        ====================================================== */
+
+        function animate() {
+
+            ctx.clearRect(
+                0,
+                0,
+                width,
+                height
+            );
+
+
+            for (
+                let i = 0;
+                i < particles.length;
+                i++
+            ) {
+
+                updateParticle(
+                    particles[i]
+                );
+
+            }
+
+
+            for (
+                let i = 0;
+                i < particles.length;
+                i++
+            ) {
+
+                for (
+                    let j = i + 1;
+                    j < particles.length;
+                    j++
+                ) {
+
+                    connectParticles(
+                        particles[i],
+                        particles[j]
+                    );
+
+                }
+
+            }
+
+
+            for (
+                let i = 0;
+                i < particles.length;
+                i++
+            ) {
+
+                drawParticle(
+                    particles[i]
+                );
+
+            }
+
+
+            requestAnimationFrame(
+                animate
+            );
+
+        }
+
+
+        /* START */
+
+        resizeCanvas();
+
+        createParticles();
+
+        animate();
+
+
+        /* RESIZE */
+
+        window.addEventListener(
+            "resize",
+            function () {
+
+                resizeCanvas();
+
+                createParticles();
+
+            }
+        );
+
+
+        /* =====================================================
+           SCROLL REVEAL
+        ====================================================== */
+
+        const revealElements =
+            document.querySelectorAll(
+                ".reveal"
+            );
+
+
+        const revealObserver =
+            new IntersectionObserver(
+                function(entries) {
+
+                    entries.forEach(
+                        function(entry) {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target
+                                    .classList
+                                    .add(
+                                        "active"
+                                    );
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: .12
+                }
+            );
+
+
+        revealElements.forEach(
+            function(element) {
+
+                revealObserver.observe(
+                    element
+                );
+
+            }
+        );
+
+    }
+
+);
+
+</script>
+
+
+{% endblock %}

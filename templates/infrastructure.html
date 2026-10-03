@@ -1,0 +1,3028 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Infrastructure | A&A Enterprises
+{% endblock %}
+
+
+{% block css %}
+
+<style>
+
+/* =========================================================
+   A&A ENTERPRISES
+   LIVE INDUSTRIAL INFRASTRUCTURE PAGE
+========================================================= */
+
+:root {
+
+    --infra-gold: #e7b83d;
+
+    --infra-gold-light: #ffd96a;
+
+    --infra-black: #020202;
+
+    --infra-panel: rgba(255,255,255,.035);
+
+    --infra-border: rgba(255,255,255,.10);
+
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.infrastructure-page {
+
+    position: relative;
+
+    background:
+        #020202;
+
+    color:
+        #fff;
+
+    min-height:
+        100vh;
+
+    overflow:
+        hidden;
+
+    isolation:
+        isolate;
+}
+
+
+/* =========================================================
+   LIVE INDUSTRIAL BACKGROUND
+========================================================= */
+
+.infra-live-background {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    width:
+        100%;
+
+    height:
+        100vh;
+
+    z-index:
+        -10;
+
+    pointer-events:
+        none;
+
+    overflow:
+        hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 25%,
+            rgba(231,184,61,.075),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 15% 80%,
+            rgba(231,184,61,.055),
+            transparent 30%
+        ),
+
+        #020202;
+}
+
+
+/* =========================================================
+   INDUSTRIAL CANVAS
+========================================================= */
+
+#infraCanvas {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    opacity:
+        .95;
+}
+
+
+/* =========================================================
+   BLUEPRINT GRID
+========================================================= */
+
+.infra-blueprint {
+
+    position:
+        absolute;
+
+    width:
+        200%;
+
+    height:
+        200%;
+
+    left:
+        -50%;
+
+    top:
+        -35%;
+
+    opacity:
+        .10;
+
+    background-image:
+
+        linear-gradient(
+            rgba(231,184,61,.11) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(231,184,61,.11) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        65px 65px;
+
+    transform:
+        perspective(750px)
+        rotateX(63deg);
+
+    animation:
+        blueprintMove 15s linear infinite;
+
+    mask-image:
+        radial-gradient(
+            ellipse at center,
+            black 15%,
+            transparent 72%
+        );
+
+    -webkit-mask-image:
+        radial-gradient(
+            ellipse at center,
+            black 15%,
+            transparent 72%
+        );
+}
+
+
+@keyframes blueprintMove {
+
+    0% {
+
+        transform:
+            perspective(750px)
+            rotateX(63deg)
+            translateY(0);
+
+    }
+
+    100% {
+
+        transform:
+            perspective(750px)
+            rotateX(63deg)
+            translateY(130px);
+
+    }
+}
+
+
+/* =========================================================
+   INDUSTRIAL GLOW
+========================================================= */
+
+.infra-glow {
+
+    position:
+        absolute;
+
+    border-radius:
+        50%;
+
+    filter:
+        blur(100px);
+
+    pointer-events:
+        none;
+
+    opacity:
+        .30;
+}
+
+
+.infra-glow-1 {
+
+    width:
+        430px;
+
+    height:
+        430px;
+
+    left:
+        -180px;
+
+    top:
+        15%;
+
+    background:
+        rgba(231,184,61,.16);
+
+    animation:
+        infraGlow1 10s ease-in-out infinite;
+}
+
+
+.infra-glow-2 {
+
+    width:
+        500px;
+
+    height:
+        500px;
+
+    right:
+        -220px;
+
+    top:
+        40%;
+
+    background:
+        rgba(231,184,61,.11);
+
+    animation:
+        infraGlow2 12s ease-in-out infinite;
+}
+
+
+.infra-glow-3 {
+
+    width:
+        260px;
+
+    height:
+        260px;
+
+    left:
+        45%;
+
+    bottom:
+        -80px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    animation:
+        infraGlow3 9s ease-in-out infinite;
+}
+
+
+@keyframes infraGlow1 {
+
+    0%,100% {
+
+        transform:
+            translate(0,0)
+            scale(1);
+
+    }
+
+    50% {
+
+        transform:
+            translate(100px,60px)
+            scale(1.25);
+
+    }
+
+}
+
+
+@keyframes infraGlow2 {
+
+    0%,100% {
+
+        transform:
+            translate(0,0)
+            scale(1);
+
+    }
+
+    50% {
+
+        transform:
+            translate(-100px,-70px)
+            scale(1.20);
+
+    }
+
+}
+
+
+@keyframes infraGlow3 {
+
+    0%,100% {
+
+        transform:
+            translate(0,0)
+            scale(1);
+
+    }
+
+    50% {
+
+        transform:
+            translate(-50px,-70px)
+            scale(1.30);
+
+    }
+
+}
+
+
+/* =========================================================
+   INDUSTRIAL SCANNER
+========================================================= */
+
+.infra-scanner {
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        1px;
+
+    top:
+        -10px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(231,184,61,.85),
+            transparent
+        );
+
+    box-shadow:
+        0 0 25px
+        rgba(231,184,61,.55);
+
+    opacity:
+        .55;
+
+    animation:
+        infraScanner 8s linear infinite;
+}
+
+
+@keyframes infraScanner {
+
+    0% {
+
+        top:
+            -10px;
+
+    }
+
+    100% {
+
+        top:
+            100%;
+
+    }
+
+}
+
+
+/* =========================================================
+   CONTENT ABOVE BACKGROUND
+========================================================= */
+
+.infrastructure-page > *:not(.infra-live-background) {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.infra-hero {
+
+    min-height:
+        78vh;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.96),
+            rgba(0,0,0,.72),
+            rgba(0,0,0,.40)
+        ),
+
+        url("/static/images/infrastructure/factory.jpg")
+
+        center / cover no-repeat;
+}
+
+
+/* =========================================================
+   HERO TECHNICAL CIRCLE
+========================================================= */
+
+.infra-hero::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        520px;
+
+    height:
+        520px;
+
+    right:
+        -180px;
+
+    top:
+        50%;
+
+    border:
+        1px solid
+        rgba(231,184,61,.15);
+
+    border-radius:
+        50%;
+
+    box-shadow:
+
+        0 0 80px
+        rgba(231,184,61,.04),
+
+        inset 0 0 80px
+        rgba(231,184,61,.03);
+
+    transform:
+        translateY(-50%);
+
+    animation:
+        technicalRing 14s linear infinite;
+
+    pointer-events:
+        none;
+}
+
+
+.infra-hero::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        300px;
+
+    height:
+        300px;
+
+    right:
+        -70px;
+
+    top:
+        50%;
+
+    border:
+        1px dashed
+        rgba(231,184,61,.13);
+
+    border-radius:
+        50%;
+
+    transform:
+        translateY(-50%);
+
+    animation:
+        technicalRingReverse 18s linear infinite;
+
+    pointer-events:
+        none;
+}
+
+
+@keyframes technicalRing {
+
+    from {
+
+        transform:
+            translateY(-50%)
+            rotate(0deg);
+
+    }
+
+    to {
+
+        transform:
+            translateY(-50%)
+            rotate(360deg);
+
+    }
+
+}
+
+
+@keyframes technicalRingReverse {
+
+    from {
+
+        transform:
+            translateY(-50%)
+            rotate(360deg);
+
+    }
+
+    to {
+
+        transform:
+            translateY(-50%)
+            rotate(0deg);
+
+    }
+
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.infra-hero-content {
+
+    padding:
+        150px 7%
+        100px;
+
+    position:
+        relative;
+
+    z-index:
+        5;
+}
+
+
+.infra-label {
+
+    color:
+        var(--infra-gold);
+
+    letter-spacing:
+        6px;
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
+    margin-bottom:
+        25px;
+
+    text-transform:
+        uppercase;
+}
+
+
+.infra-label::before {
+
+    content:
+        "";
+
+    display:
+        inline-block;
+
+    width:
+        42px;
+
+    height:
+        1px;
+
+    background:
+        var(--infra-gold);
+
+    vertical-align:
+        middle;
+
+    margin-right:
+        14px;
+
+    box-shadow:
+        0 0 12px
+        rgba(231,184,61,.7);
+}
+
+
+.infra-hero h1 {
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(55px,8vw,105px);
+
+    line-height:
+        .90;
+
+    letter-spacing:
+        -4px;
+
+    margin:
+        0;
+
+    max-width:
+        850px;
+}
+
+
+.infra-hero h1 span {
+
+    color:
+        var(--infra-gold);
+
+    text-shadow:
+        0 0 35px
+        rgba(231,184,61,.12);
+}
+
+
+.infra-hero p {
+
+    max-width:
+        700px;
+
+    color:
+        rgba(255,255,255,.65);
+
+    line-height:
+        1.8;
+
+    margin-top:
+        30px;
+
+    font-size:
+        16px;
+}
+
+
+/* =========================================================
+   LIVE FACTORY STATUS
+========================================================= */
+
+.infra-status {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    margin-top:
+        30px;
+
+    padding:
+        11px 18px;
+
+    border:
+        1px solid
+        rgba(231,184,61,.25);
+
+    border-radius:
+        50px;
+
+    background:
+        rgba(231,184,61,.045);
+
+    backdrop-filter:
+        blur(15px);
+
+    color:
+        rgba(255,255,255,.65);
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        2px;
+}
+
+
+.infra-status-dot {
+
+    width:
+        8px;
+
+    height:
+        8px;
+
+    border-radius:
+        50%;
+
+    background:
+        #42ff8b;
+
+    box-shadow:
+        0 0 14px
+        #42ff8b;
+
+    animation:
+        infraStatusPulse 1.5s infinite;
+}
+
+
+@keyframes infraStatusPulse {
+
+    0%,100% {
+
+        transform:
+            scale(1);
+
+        opacity:
+            1;
+
+    }
+
+    50% {
+
+        transform:
+            scale(.55);
+
+        opacity:
+            .45;
+
+    }
+
+}
+
+
+/* =========================================================
+   CAPABILITY SECTION
+========================================================= */
+
+.infra-section {
+
+    padding:
+        110px 0;
+
+    background:
+        rgba(5,5,5,.78);
+
+    backdrop-filter:
+        blur(5px);
+}
+
+
+/* =========================================================
+   INFRA CARD
+========================================================= */
+
+.infra-card {
+
+    height:
+        100%;
+
+    padding:
+        40px 30px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.10);
+
+    border-radius:
+        22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.08),
+            rgba(255,255,255,.025)
+        );
+
+    backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 25px 60px
+        rgba(0,0,0,.45);
+
+    transition:
+        .45s ease;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+}
+
+
+.infra-card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        -100%;
+
+    top:
+        0;
+
+    width:
+        100%;
+
+    height:
+        1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--infra-gold),
+            transparent
+        );
+
+    transition:
+        .6s;
+}
+
+
+.infra-card:hover::before {
+
+    left:
+        100%;
+}
+
+
+.infra-card:hover {
+
+    transform:
+        translateY(-12px)
+        rotateX(2deg);
+
+    border-color:
+        rgba(231,184,61,.45);
+
+    box-shadow:
+        0 35px 80px
+        rgba(0,0,0,.55);
+}
+
+
+.infra-icon {
+
+    color:
+        var(--infra-gold);
+
+    font-size:
+        35px;
+
+    margin-bottom:
+        25px;
+
+    text-shadow:
+        0 0 20px
+        rgba(231,184,61,.25);
+}
+
+
+.infra-card h3 {
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size:
+        27px;
+}
+
+
+.infra-card p {
+
+    color:
+        rgba(255,255,255,.55);
+
+    line-height:
+        1.8;
+
+    font-size:
+        14px;
+}
+
+
+/* =========================================================
+   WORKFLOW
+========================================================= */
+
+.infra-workflow {
+
+    background:
+        rgba(8,8,8,.82);
+
+    padding:
+        110px 0;
+
+    position:
+        relative;
+}
+
+
+/* PROCESS LINE */
+
+.infra-workflow::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        10%;
+
+    right:
+        10%;
+
+    top:
+        225px;
+
+    height:
+        1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(231,184,61,.30),
+            transparent
+        );
+
+    pointer-events:
+        none;
+}
+
+
+.workflow-number {
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    color:
+        var(--infra-gold);
+
+    font-size:
+        50px;
+
+    text-shadow:
+        0 0 20px
+        rgba(231,184,61,.12);
+}
+
+
+.workflow-card {
+
+    padding:
+        35px 25px;
+
+    height:
+        100%;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    border-radius:
+        20px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    backdrop-filter:
+        blur(15px);
+
+    transition:
+        .4s;
+
+    position:
+        relative;
+
+    z-index:
+        2;
+}
+
+
+.workflow-card:hover {
+
+    transform:
+        translateY(-10px);
+
+    background:
+        rgba(231,184,61,.06);
+
+    border-color:
+        rgba(231,184,61,.35);
+
+    box-shadow:
+        0 25px 55px
+        rgba(0,0,0,.35);
+}
+
+
+.workflow-card h4 {
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+}
+
+
+.workflow-card p {
+
+    color:
+        rgba(255,255,255,.55);
+
+    font-size:
+        14px;
+}
+
+
+/* =========================================================
+   MACHINERY SECTION
+========================================================= */
+
+.machine-section {
+
+    padding:
+        110px 0;
+
+    background:
+        rgba(5,5,5,.82);
+}
+
+
+/* MACHINE VISUAL PANEL */
+
+.machine-visual {
+
+    min-height:
+        100%;
+
+    border:
+        1px solid
+        rgba(231,184,61,.12);
+
+    border-radius:
+        25px;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(231,184,61,.10),
+            transparent 48%
+        ),
+
+        #060606;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    box-shadow:
+        inset
+        0 0 80px
+        rgba(231,184,61,.025);
+}
+
+
+/* MACHINE RINGS */
+
+.machine-ring {
+
+    position:
+        absolute;
+
+    border:
+        1px solid
+        rgba(231,184,61,.18);
+
+    border-radius:
+        50%;
+}
+
+
+.machine-ring-1 {
+
+    width:
+        280px;
+
+    height:
+        280px;
+
+    animation:
+        machineRotate 18s linear infinite;
+}
+
+
+.machine-ring-2 {
+
+    width:
+        190px;
+
+    height:
+        190px;
+
+    border-style:
+        dashed;
+
+    animation:
+        machineRotateReverse 12s linear infinite;
+}
+
+
+.machine-ring-3 {
+
+    width:
+        90px;
+
+    height:
+        90px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(231,184,61,.30),
+            rgba(231,184,61,.03) 55%,
+            transparent 70%
+        );
+
+    box-shadow:
+        0 0 45px
+        rgba(231,184,61,.20);
+}
+
+
+.machine-center {
+
+    position:
+        relative;
+
+    z-index:
+        5;
+
+    text-align:
+        center;
+}
+
+
+.machine-center i {
+
+    color:
+        var(--infra-gold);
+
+    font-size:
+        45px;
+
+    text-shadow:
+        0 0 25px
+        rgba(231,184,61,.4);
+}
+
+
+.machine-center span {
+
+    display:
+        block;
+
+    margin-top:
+        12px;
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        3px;
+
+    color:
+        rgba(255,255,255,.5);
+}
+
+
+@keyframes machineRotate {
+
+    from {
+
+        transform:
+            rotate(0deg);
+
+    }
+
+    to {
+
+        transform:
+            rotate(360deg);
+
+    }
+
+}
+
+
+@keyframes machineRotateReverse {
+
+    from {
+
+        transform:
+            rotate(360deg);
+
+    }
+
+    to {
+
+        transform:
+            rotate(0deg);
+
+    }
+
+}
+
+
+/* MACHINE LIST */
+
+.machine-list {
+
+    list-style:
+        none;
+
+    padding:
+        0;
+}
+
+
+.machine-list li {
+
+    padding:
+        18px 20px;
+
+    margin-bottom:
+        10px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    border-radius:
+        12px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    color:
+        rgba(255,255,255,.7);
+
+    transition:
+        .3s;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+}
+
+
+.machine-list li::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        0;
+
+    height:
+        100%;
+
+    left:
+        0;
+
+    top:
+        0;
+
+    background:
+        rgba(231,184,61,.04);
+
+    transition:
+        .35s;
+}
+
+
+.machine-list li:hover::after {
+
+    width:
+        100%;
+}
+
+
+.machine-list li:hover {
+
+    border-color:
+        var(--infra-gold);
+
+    transform:
+        translateX(8px);
+}
+
+
+.machine-list i {
+
+    color:
+        var(--infra-gold);
+
+    margin-right:
+        12px;
+
+    position:
+        relative;
+
+    z-index:
+        2;
+}
+
+
+/* =========================================================
+   QUALITY SECTION
+========================================================= */
+
+.infra-quality {
+
+    padding:
+        150px 20px;
+
+    text-align:
+        center;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(231,184,61,.13),
+            transparent 45%
+        ),
+
+        rgba(5,5,5,.90);
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+}
+
+
+.infra-quality::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        500px;
+
+    height:
+        500px;
+
+    border:
+        1px solid
+        rgba(231,184,61,.08);
+
+    border-radius:
+        50%;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    animation:
+        qualityRing 15s linear infinite;
+}
+
+
+@keyframes qualityRing {
+
+    from {
+
+        transform:
+            translate(-50%,-50%)
+            rotate(0deg)
+            scale(1);
+
+    }
+
+    to {
+
+        transform:
+            translate(-50%,-50%)
+            rotate(360deg)
+            scale(1.12);
+
+    }
+
+}
+
+
+.infra-quality .container {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+}
+
+
+.infra-quality h2 {
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(45px,6vw,75px);
+}
+
+
+.infra-quality p {
+
+    max-width:
+        700px;
+
+    margin:
+        25px auto;
+
+    color:
+        rgba(255,255,255,.6);
+
+    line-height:
+        1.8;
+}
+
+
+/* =========================================================
+   GOLD BUTTON
+========================================================= */
+
+.gold-btn {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    padding:
+        16px 28px;
+
+    background:
+        var(--infra-gold);
+
+    color:
+        #050505;
+
+    text-decoration:
+        none;
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        2px;
+
+    transition:
+        .35s;
+
+    position:
+        relative;
+
+    z-index:
+        3;
+}
+
+
+.gold-btn:hover {
+
+    background:
+        #fff;
+
+    color:
+        #000;
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 15px 40px
+        rgba(231,184,61,.12);
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+.infra-reveal {
+
+    opacity:
+        0;
+
+    transform:
+        translateY(35px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+
+.infra-reveal.active {
+
+    opacity:
+        1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:991px) {
+
+    .infra-workflow::before {
+
+        display:
+            none;
+
+    }
+
+
+    .machine-visual {
+
+        min-height:
+            400px;
+
+        margin-bottom:
+            30px;
+
+    }
+
+}
+
+
+@media(max-width:768px) {
+
+    .infra-hero {
+
+        min-height:
+            760px;
+
+    }
+
+
+    .infra-hero-content {
+
+        padding:
+            130px 25px 80px;
+
+    }
+
+
+    .infra-hero h1 {
+
+        font-size:
+            55px;
+
+        letter-spacing:
+            -2px;
+
+    }
+
+
+    .infra-hero p {
+
+        font-size:
+            14px;
+
+    }
+
+
+    .infra-section,
+    .infra-workflow,
+    .machine-section {
+
+        padding:
+            75px 0;
+
+    }
+
+
+    .infra-quality {
+
+        padding:
+            100px 20px;
+
+    }
+
+
+    .infra-blueprint {
+
+        background-size:
+            45px 45px;
+
+        opacity:
+            .07;
+
+    }
+
+
+    .machine-visual {
+
+        min-height:
+            350px;
+
+    }
+
+
+    .machine-ring-1 {
+
+        width:
+            230px;
+
+        height:
+            230px;
+
+    }
+
+
+    .machine-ring-2 {
+
+        width:
+            155px;
+
+        height:
+            155px;
+
+    }
+
+}
+
+</style>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="infrastructure-page">
+
+
+<!-- =====================================================
+     LIVE INDUSTRIAL BACKGROUND
+====================================================== -->
+
+<div class="infra-live-background">
+
+    <canvas id="infraCanvas"></canvas>
+
+    <div class="infra-blueprint"></div>
+
+    <div class="infra-glow infra-glow-1"></div>
+
+    <div class="infra-glow infra-glow-2"></div>
+
+    <div class="infra-glow infra-glow-3"></div>
+
+    <div class="infra-scanner"></div>
+
+</div>
+
+
+
+<!-- =====================================================
+     HERO
+====================================================== -->
+
+<section class="infra-hero">
+
+    <div class="infra-hero-content infra-reveal">
+
+        <div class="infra-label">
+
+            A&A ENTERPRISES / INFRASTRUCTURE
+
+        </div>
+
+
+        <h1>
+
+            Built For
+
+            <br>
+
+            <span>Precision.</span>
+
+        </h1>
+
+
+        <p>
+
+            Modern infrastructure, skilled workmanship and
+            quality-focused processes supporting our signage,
+            fabrication and branding solutions.
+
+        </p>
+
+
+        <div class="infra-status">
+
+            <span class="infra-status-dot"></span>
+
+            PRODUCTION • FABRICATION • INSTALLATION
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CAPABILITIES
+====================================================== -->
+
+<section class="infra-section">
+
+    <div class="container">
+
+        <div class="text-center mb-5 infra-reveal">
+
+            <div class="infra-label">
+                OUR CAPABILITIES
+            </div>
+
+            <h2 class="display-4 fw-bold">
+
+                Infrastructure That Delivers
+
+            </h2>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <!-- DESIGN -->
+
+            <div class="col-lg-4 infra-reveal">
+
+                <div class="infra-card">
+
+                    <div class="infra-icon">
+
+                        <i class="fas fa-laptop"></i>
+
+                    </div>
+
+
+                    <h3>
+                        Design Studio
+                    </h3>
+
+
+                    <p>
+
+                        Professional design and planning support
+                        for developing signage concepts according
+                        to project requirements.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FABRICATION -->
+
+            <div class="col-lg-4 infra-reveal">
+
+                <div class="infra-card">
+
+                    <div class="infra-icon">
+
+                        <i class="fas fa-industry"></i>
+
+                    </div>
+
+
+                    <h3>
+                        Fabrication Unit
+                    </h3>
+
+
+                    <p>
+
+                        Dedicated fabrication capabilities for
+                        signage, metal work, acrylic work and
+                        customized branding requirements.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- INSTALLATION -->
+
+            <div class="col-lg-4 infra-reveal">
+
+                <div class="infra-card">
+
+                    <div class="infra-icon">
+
+                        <i class="fas fa-tools"></i>
+
+                    </div>
+
+
+                    <h3>
+                        Installation Team
+                    </h3>
+
+
+                    <p>
+
+                        Experienced technicians supporting safe
+                        and professional installation at project
+                        locations.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WORKFLOW
+====================================================== -->
+
+<section class="infra-workflow">
+
+    <div class="container">
+
+        <div class="text-center mb-5 infra-reveal">
+
+            <div class="infra-label">
+                OUR PROCESS
+            </div>
+
+            <h2 class="display-4 fw-bold">
+
+                From Idea To Installation
+
+            </h2>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            {% set steps = [
+
+                ("01","Consultation"),
+
+                ("02","Design"),
+
+                ("03","Approval"),
+
+                ("04","Manufacturing"),
+
+                ("05","Quality Check"),
+
+                ("06","Installation")
+
+            ] %}
+
+
+            {% for number, title in steps %}
+
+            <div
+                class="col-lg-2 col-md-4 col-6 infra-reveal"
+            >
+
+                <div class="workflow-card">
+
+                    <div class="workflow-number">
+
+                        {{ number }}
+
+                    </div>
+
+
+                    <h4>
+
+                        {{ title }}
+
+                    </h4>
+
+
+                    <p>
+
+                        Carefully executed as part of
+                        our project workflow.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MACHINERY
+====================================================== -->
+
+<section class="machine-section">
+
+    <div class="container">
+
+        <div class="text-center mb-5 infra-reveal">
+
+            <div class="infra-label">
+                EQUIPMENT
+            </div>
+
+            <h2 class="display-4 fw-bold">
+
+                Machinery & Equipment
+
+            </h2>
+
+        </div>
+
+
+        <div class="row g-5 align-items-stretch">
+
+
+            <!-- MACHINE VISUAL -->
+
+            <div class="col-lg-5 infra-reveal">
+
+                <div class="machine-visual">
+
+                    <div class="machine-ring machine-ring-1"></div>
+
+                    <div class="machine-ring machine-ring-2"></div>
+
+                    <div class="machine-ring machine-ring-3"></div>
+
+
+                    <div class="machine-center">
+
+                        <i class="fas fa-gears"></i>
+
+                        <span>
+                            INDUSTRIAL SYSTEM
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MACHINE LIST -->
+
+            <div class="col-lg-7">
+
+                <div class="row">
+
+
+                    <div class="col-md-6 infra-reveal">
+
+                        <ul class="machine-list">
+
+                            <li>
+
+                                <i class="fas fa-check"></i>
+
+                                Laser Cutting Machine
+
+                            </li>
+
+
+                            <li>
+
+                                <i class="fas fa-check"></i>
+
+                                CNC Router
+
+                            </li>
+
+
+                            <li>
+
+                                <i class="fas fa-check"></i>
+
+                                Acrylic Bending Machine
+
+                            </li>
+
+
+                            <li>
+
+                                <i class="fas fa-check"></i>
+
+                                Welding Equipment
+
+                            </li>
+
+
+                            <li>
+
+                                <i class="fas fa-check"></i>
+
+                                Powder Coating Unit
+
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+
+                    <div class="col-md-6 infra-reveal">
+
+                        <ul class="machine-list">
+
+                            <li>
+
+                                <i class="fas fa-check"></i>
+
+                                Vinyl Plotter
+
+                            </li>
+
+
+                            <li>
+
+                                <i class="fas fa-check"></i>
+
+                                LED Assembly Tools
+
+                            </li>
+
+
+                            <li>
+
+                                <i class="fas fa-check"></i>
+
+                                Digital Printing Machine
+
+                            </li>
+
+
+                            <li>
+
+                                <i class="fas fa-check"></i>
+
+                                Metal Finishing Equipment
+
+                            </li>
+
+
+                            <li>
+
+                                <i class="fas fa-check"></i>
+
+                                Installation Tools
+
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     QUALITY
+====================================================== -->
+
+<section class="infra-quality">
+
+    <div class="container">
+
+        <div class="infra-label">
+
+            QUALITY ASSURANCE
+
+        </div>
+
+
+        <h2>
+
+            Quality At Every Stage
+
+        </h2>
+
+
+        <p>
+
+            Every project passes through planning,
+            production, inspection and installation
+            stages with attention to quality, finish
+            and execution.
+
+        </p>
+
+
+        <a
+            href="{{ url_for('contact') }}"
+            class="gold-btn"
+        >
+
+            START A PROJECT
+
+            <i class="fas fa-arrow-right"></i>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     LIVE INDUSTRIAL PARTICLE SYSTEM
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        const canvas =
+            document.getElementById(
+                "infraCanvas"
+            );
+
+
+        if (!canvas) {
+
+            return;
+
+        }
+
+
+        const ctx =
+            canvas.getContext("2d");
+
+
+        let width =
+            window.innerWidth;
+
+
+        let height =
+            window.innerHeight;
+
+
+        let particles =
+            [];
+
+
+        const mouse = {
+
+            x: null,
+
+            y: null,
+
+            radius: 180
+
+        };
+
+
+        /* =====================================================
+           RESIZE
+        ====================================================== */
+
+        function resizeCanvas() {
+
+            width =
+                canvas.width =
+                    window.innerWidth;
+
+            height =
+                canvas.height =
+                    window.innerHeight;
+
+        }
+
+
+        /* =====================================================
+           PARTICLE COUNT
+        ====================================================== */
+
+        function particleCount() {
+
+            if (
+                window.innerWidth < 600
+            ) {
+
+                return 32;
+
+            }
+
+
+            if (
+                window.innerWidth < 1000
+            ) {
+
+                return 55;
+
+            }
+
+
+            return 85;
+
+        }
+
+
+        /* =====================================================
+           CREATE INDUSTRIAL NODES
+        ====================================================== */
+
+        function createParticles() {
+
+            particles = [];
+
+
+            const total =
+                particleCount();
+
+
+            for (
+                let i = 0;
+                i < total;
+                i++
+            ) {
+
+                particles.push({
+
+                    x:
+                        Math.random() *
+                        width,
+
+                    y:
+                        Math.random() *
+                        height,
+
+                    vx:
+                        (
+                            Math.random() -
+                            .5
+                        ) * .28,
+
+                    vy:
+                        (
+                            Math.random() -
+                            .5
+                        ) * .28,
+
+                    size:
+                        Math.random() *
+                        2 +
+                        .7,
+
+                    pulse:
+                        Math.random() *
+                        Math.PI *
+                        2,
+
+                    type:
+                        Math.random() > .85
+                            ? "machine"
+                            : "node"
+
+                });
+
+            }
+
+        }
+
+
+        /* =====================================================
+           MOUSE
+        ====================================================== */
+
+        window.addEventListener(
+            "mousemove",
+            function (event) {
+
+                mouse.x =
+                    event.clientX;
+
+                mouse.y =
+                    event.clientY;
+
+            }
+        );
+
+
+        window.addEventListener(
+            "mouseleave",
+            function () {
+
+                mouse.x =
+                    null;
+
+                mouse.y =
+                    null;
+
+            }
+        );
+
+
+        /* =====================================================
+           UPDATE
+        ====================================================== */
+
+        function updateParticle(p) {
+
+            p.x += p.vx;
+
+            p.y += p.vy;
+
+
+            if (
+                p.x < -30
+            ) {
+
+                p.x =
+                    width + 30;
+
+            }
+
+
+            if (
+                p.x >
+                width + 30
+            ) {
+
+                p.x =
+                    -30;
+
+            }
+
+
+            if (
+                p.y < -30
+            ) {
+
+                p.y =
+                    height + 30;
+
+            }
+
+
+            if (
+                p.y >
+                height + 30
+            ) {
+
+                p.y =
+                    -30;
+
+            }
+
+
+            /* MOUSE MAGNETIC EFFECT */
+
+            if (
+                mouse.x !== null &&
+                mouse.y !== null
+            ) {
+
+                const dx =
+                    p.x -
+                    mouse.x;
+
+
+                const dy =
+                    p.y -
+                    mouse.y;
+
+
+                const distance =
+                    Math.sqrt(
+                        dx * dx +
+                        dy * dy
+                    );
+
+
+                if (
+                    distance <
+                    mouse.radius
+                ) {
+
+                    const force =
+                        (
+                            mouse.radius -
+                            distance
+                        ) /
+                        mouse.radius;
+
+
+                    const angle =
+                        Math.atan2(
+                            dy,
+                            dx
+                        );
+
+
+                    p.x +=
+                        Math.cos(angle) *
+                        force *
+                        .8;
+
+
+                    p.y +=
+                        Math.sin(angle) *
+                        force *
+                        .8;
+
+                }
+
+            }
+
+        }
+
+
+        /* =====================================================
+           DRAW INDUSTRIAL NODE
+        ====================================================== */
+
+        function drawParticle(p) {
+
+            p.pulse +=
+                .018;
+
+
+            const pulse =
+                .65 +
+                Math.sin(
+                    p.pulse
+                ) * .25;
+
+
+            if (
+                p.type ===
+                "machine"
+            ) {
+
+                /* MACHINE NODE */
+
+                ctx.beginPath();
+
+                ctx.rect(
+                    p.x - 2,
+                    p.y - 2,
+                    4,
+                    4
+                );
+
+
+                ctx.fillStyle =
+                    "rgba(255,215,100," +
+                    pulse +
+                    ")";
+
+
+                ctx.shadowBlur =
+                    14;
+
+
+                ctx.shadowColor =
+                    "rgba(231,184,61,.8)";
+
+
+                ctx.fill();
+
+
+                ctx.shadowBlur =
+                    0;
+
+            }
+
+            else {
+
+                /* NORMAL ENGINEERING NODE */
+
+                ctx.beginPath();
+
+                ctx.arc(
+                    p.x,
+                    p.y,
+                    p.size,
+                    0,
+                    Math.PI * 2
+                );
+
+
+                ctx.fillStyle =
+                    "rgba(231,184,61," +
+                    pulse +
+                    ")";
+
+
+                ctx.shadowBlur =
+                    12;
+
+
+                ctx.shadowColor =
+                    "rgba(231,184,61,.65)";
+
+
+                ctx.fill();
+
+
+                ctx.shadowBlur =
+                    0;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           CONNECT ENGINEERING NODES
+        ====================================================== */
+
+        function connect(a,b) {
+
+            const dx =
+                a.x -
+                b.x;
+
+
+            const dy =
+                a.y -
+                b.y;
+
+
+            const distance =
+                Math.sqrt(
+                    dx * dx +
+                    dy * dy
+                );
+
+
+            const maxDistance =
+                window.innerWidth < 700
+                    ? 100
+                    : 150;
+
+
+            if (
+                distance >
+                maxDistance
+            ) {
+
+                return;
+
+            }
+
+
+            const opacity =
+                (
+                    1 -
+                    distance /
+                    maxDistance
+                ) *
+                .20;
+
+
+            ctx.beginPath();
+
+
+            ctx.moveTo(
+                a.x,
+                a.y
+            );
+
+
+            ctx.lineTo(
+                b.x,
+                b.y
+            );
+
+
+            ctx.strokeStyle =
+                "rgba(231,184,61," +
+                opacity +
+                ")";
+
+
+            ctx.lineWidth =
+                .6;
+
+
+            ctx.stroke();
+
+        }
+
+
+        /* =====================================================
+           MOVING PRODUCTION SPARK
+        ====================================================== */
+
+        function drawSpark() {
+
+            const x =
+                (
+                    Date.now() /
+                    7
+                ) %
+                (width + 200) -
+                100;
+
+
+            const y =
+                height *
+                .38;
+
+
+            const gradient =
+                ctx.createLinearGradient(
+                    x - 90,
+                    y,
+                    x + 90,
+                    y
+                );
+
+
+            gradient.addColorStop(
+                0,
+                "rgba(231,184,61,0)"
+            );
+
+
+            gradient.addColorStop(
+                .5,
+                "rgba(231,184,61,.55)"
+            );
+
+
+            gradient.addColorStop(
+                1,
+                "rgba(231,184,61,0)"
+            );
+
+
+            ctx.beginPath();
+
+
+            ctx.moveTo(
+                x - 90,
+                y
+            );
+
+
+            ctx.lineTo(
+                x + 90,
+                y
+            );
+
+
+            ctx.strokeStyle =
+                gradient;
+
+
+            ctx.lineWidth =
+                .8;
+
+
+            ctx.stroke();
+
+        }
+
+
+        /* =====================================================
+           ANIMATION
+        ====================================================== */
+
+        function animate() {
+
+            ctx.clearRect(
+                0,
+                0,
+                width,
+                height
+            );
+
+
+            /* UPDATE */
+
+            for (
+                let i = 0;
+                i < particles.length;
+                i++
+            ) {
+
+                updateParticle(
+                    particles[i]
+                );
+
+            }
+
+
+            /* CONNECTIONS */
+
+            for (
+                let i = 0;
+                i < particles.length;
+                i++
+            ) {
+
+                for (
+                    let j = i + 1;
+                    j < particles.length;
+                    j++
+                ) {
+
+                    connect(
+                        particles[i],
+                        particles[j]
+                    );
+
+                }
+
+            }
+
+
+            /* NODES */
+
+            for (
+                let i = 0;
+                i < particles.length;
+                i++
+            ) {
+
+                drawParticle(
+                    particles[i]
+                );
+
+            }
+
+
+            /* MOVING PRODUCTION LINE */
+
+            drawSpark();
+
+
+            requestAnimationFrame(
+                animate
+            );
+
+        }
+
+
+        /* =====================================================
+           START
+        ====================================================== */
+
+        resizeCanvas();
+
+        createParticles();
+
+        animate();
+
+
+        /* =====================================================
+           RESIZE
+        ====================================================== */
+
+        window.addEventListener(
+            "resize",
+            function () {
+
+                resizeCanvas();
+
+                createParticles();
+
+            }
+        );
+
+
+        /* =====================================================
+           SCROLL REVEAL
+        ====================================================== */
+
+        const revealElements =
+            document.querySelectorAll(
+                ".infra-reveal"
+            );
+
+
+        const observer =
+            new IntersectionObserver(
+                function(entries) {
+
+                    entries.forEach(
+                        function(entry) {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target
+                                    .classList
+                                    .add(
+                                        "active"
+                                    );
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold:
+                        .12
+                }
+            );
+
+
+        revealElements.forEach(
+            function(element) {
+
+                observer.observe(
+                    element
+                );
+
+            }
+        );
+
+
+    }
+
+);
+
+</script>
+
+
+{% endblock %}

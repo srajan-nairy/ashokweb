@@ -1,0 +1,1981 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Services | A&A Enterprises
+{% endblock %}
+
+
+{% block css %}
+
+<style>
+
+/* =========================================================
+   SERVICES PAGE
+========================================================= */
+
+.services-page {
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(231,184,61,0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 45%,
+            rgba(255,255,255,0.035),
+            transparent 30%
+        ),
+        #050505;
+
+    color: #ffffff;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.services-hero {
+
+    position: relative;
+
+    min-height: 72vh;
+
+    display: flex;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,0.94),
+            rgba(0,0,0,0.72),
+            rgba(0,0,0,0.42)
+        ),
+        url("/static/images/services/corporate.jpg")
+        center center / cover no-repeat;
+}
+
+
+.services-hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 75% 30%,
+            rgba(231,184,61,0.15),
+            transparent 32%
+        );
+
+    pointer-events: none;
+}
+
+
+.services-hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 650px;
+
+    height: 650px;
+
+    right: -220px;
+
+    top: -180px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(255,255,255,0.10);
+
+    background:
+        rgba(255,255,255,0.025);
+
+    box-shadow:
+        inset 0 0 100px rgba(255,255,255,0.03);
+
+    pointer-events: none;
+}
+
+
+.services-hero-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    width: 100%;
+
+    padding: 145px 7% 100px;
+}
+
+
+.service-eyebrow {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    color: #e7b83d;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 6px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 25px;
+}
+
+
+.service-eyebrow::before {
+
+    content: "";
+
+    width: 55px;
+
+    height: 1px;
+
+    background: #e7b83d;
+}
+
+
+.services-hero h1 {
+
+    max-width: 900px;
+
+    margin: 0;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(55px, 8vw, 110px);
+
+    line-height: 0.92;
+
+    font-weight: 600;
+
+    letter-spacing: -4px;
+}
+
+
+.services-hero h1 span {
+
+    color: #e7b83d;
+}
+
+
+.services-hero p {
+
+    max-width: 720px;
+
+    margin-top: 35px;
+
+    color: rgba(255,255,255,0.70);
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.services-intro {
+
+    padding: 115px 0;
+
+    background: #080808;
+}
+
+
+.section-label {
+
+    color: #e7b83d;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+}
+
+
+.section-title {
+
+    margin-top: 15px;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(40px, 5vw, 68px);
+
+    line-height: 1;
+
+    color: #ffffff;
+}
+
+
+.service-intro-text {
+
+    max-width: 750px;
+
+    color: rgba(255,255,255,0.60);
+
+    line-height: 1.9;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   SERVICES GRID
+========================================================= */
+
+.services-grid {
+
+    padding: 30px 0 120px;
+
+    background: #080808;
+}
+
+
+.service-card {
+
+    position: relative;
+
+    height: 100%;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(255,255,255,0.10);
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.09),
+            rgba(255,255,255,0.025)
+        );
+
+    backdrop-filter: blur(20px);
+
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 25px 65px rgba(0,0,0,0.40),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+
+    transition:
+        transform 0.45s ease,
+        border-color 0.45s ease,
+        box-shadow 0.45s ease;
+}
+
+
+.service-card:hover {
+
+    transform:
+        translateY(-14px)
+        rotateX(2deg)
+        rotateY(-2deg);
+
+    border-color:
+        rgba(231,184,61,0.50);
+
+    box-shadow:
+        0 35px 85px rgba(0,0,0,0.65),
+        0 0 35px rgba(231,184,61,0.07);
+}
+
+
+/* =========================================================
+   SERVICE IMAGE
+========================================================= */
+
+.service-image {
+
+    position: relative;
+
+    height: 250px;
+
+    overflow: hidden;
+}
+
+
+.service-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.7s ease;
+}
+
+
+.service-card:hover
+.service-image img {
+
+    transform: scale(1.08);
+}
+
+
+.service-image::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,0.70),
+            transparent 65%
+        );
+}
+
+
+/* =========================================================
+   SERVICE NUMBER
+========================================================= */
+
+.service-number {
+
+    position: absolute;
+
+    top: 18px;
+
+    left: 18px;
+
+    z-index: 4;
+
+    width: 42px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(0,0,0,0.60);
+
+    border:
+        1px solid rgba(231,184,61,0.45);
+
+    color: #e7b83d;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    backdrop-filter: blur(10px);
+}
+
+
+/* =========================================================
+   SERVICE BODY
+========================================================= */
+
+.service-body {
+
+    padding: 30px;
+}
+
+
+.service-body h3 {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 28px;
+
+    color: #ffffff;
+
+    margin-bottom: 15px;
+}
+
+
+.service-body p {
+
+    color: rgba(255,255,255,0.58);
+
+    line-height: 1.75;
+
+    font-size: 14px;
+
+    margin-bottom: 22px;
+}
+
+
+.service-link {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #e7b83d;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+.service-link:hover {
+
+    color: #ffffff;
+}
+
+
+.service-link i {
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.service-card:hover
+.service-link i {
+
+    transform: translateX(6px);
+}
+
+
+/* =========================================================
+   PROCESS
+========================================================= */
+
+.process-section {
+
+    padding: 120px 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(231,184,61,0.07),
+            transparent 45%
+        ),
+        #050505;
+}
+
+
+.process-card {
+
+    position: relative;
+
+    height: 100%;
+
+    padding: 40px 30px;
+
+    border:
+        1px solid rgba(255,255,255,0.10);
+
+    border-radius: 20px;
+
+    background:
+        rgba(255,255,255,0.035);
+
+    backdrop-filter: blur(16px);
+
+    transition:
+        all 0.4s ease;
+}
+
+
+.process-card:hover {
+
+    transform:
+        translateY(-10px);
+
+    border-color:
+        rgba(231,184,61,0.45);
+
+    background:
+        rgba(231,184,61,0.055);
+}
+
+
+.process-number {
+
+    color: #e7b83d;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 42px;
+
+    line-height: 1;
+
+    margin-bottom: 22px;
+}
+
+
+.process-icon {
+
+    color: #e7b83d;
+
+    font-size: 28px;
+
+    margin-bottom: 20px;
+}
+
+
+.process-card h4 {
+
+    color: #ffffff;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 24px;
+}
+
+
+.process-card p {
+
+    color:
+        rgba(255,255,255,0.55);
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   CAPABILITIES
+========================================================= */
+
+.capabilities-section {
+
+    padding: 110px 0;
+
+    background: #080808;
+}
+
+
+.capability-panel {
+
+    padding: 50px;
+
+    border:
+        1px solid rgba(255,255,255,0.10);
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.08),
+            rgba(255,255,255,0.025)
+        );
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,0.40);
+}
+
+
+.capability-list {
+
+    list-style: none;
+
+    padding: 0;
+
+    margin: 30px 0 0;
+}
+
+
+.capability-list li {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 15px 0;
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.07);
+
+    color:
+        rgba(255,255,255,0.70);
+
+    font-size: 14px;
+}
+
+
+.capability-list li:last-child {
+
+    border-bottom: none;
+}
+
+
+.capability-list i {
+
+    color: #e7b83d;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.service-stats {
+
+    padding: 95px 0;
+
+    background: #050505;
+
+    border-top:
+        1px solid rgba(255,255,255,0.08);
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.08);
+}
+
+
+.stat-number {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(45px,5vw,72px);
+
+    color: #e7b83d;
+
+    line-height: 1;
+}
+
+
+.stat-label {
+
+    margin-top: 12px;
+
+    color:
+        rgba(255,255,255,0.50);
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.services-cta {
+
+    position: relative;
+
+    padding: 120px 20px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(231,184,61,0.14),
+            transparent 45%
+        ),
+        #050505;
+}
+
+
+.services-cta h2 {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(42px,6vw,75px);
+
+    line-height: 1;
+
+    color: #ffffff;
+}
+
+
+.services-cta p {
+
+    max-width: 650px;
+
+    margin:
+        22px auto 35px;
+
+    color:
+        rgba(255,255,255,0.60);
+
+    line-height: 1.8;
+}
+
+
+.cta-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 17px 30px;
+
+    background: #e7b83d;
+
+    color: #050505 !important;
+
+    text-decoration: none !important;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    transition:
+        all 0.3s ease;
+}
+
+
+.cta-button:hover {
+
+    background: #ffffff;
+
+    transform:
+        translateY(-4px);
+}
+
+
+/* =========================================================
+   3D FLOATING EFFECT
+========================================================= */
+
+@keyframes serviceFloat {
+
+    0% {
+
+        transform:
+            translateY(0)
+            rotateX(0)
+            rotateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-7px)
+            rotateX(1deg)
+            rotateY(-1deg);
+
+    }
+
+    100% {
+
+        transform:
+            translateY(0)
+            rotateX(0)
+            rotateY(0);
+
+    }
+}
+
+
+.service-card:nth-child(2n) {
+
+    animation:
+        serviceFloat 7s ease-in-out infinite;
+}
+
+
+.service-card:nth-child(3n) {
+
+    animation:
+        serviceFloat 8s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 991px) {
+
+    .services-hero-content {
+
+        padding:
+            130px 6% 80px;
+    }
+
+}
+
+
+@media (max-width: 767px) {
+
+    .services-hero {
+
+        min-height:
+            70vh;
+    }
+
+
+    .services-hero-content {
+
+        padding:
+            120px 25px 70px;
+    }
+
+
+    .services-hero h1 {
+
+        font-size:
+            55px;
+
+        letter-spacing:
+            -2px;
+    }
+
+
+    .services-intro,
+    .process-section,
+    .capabilities-section {
+
+        padding:
+            75px 0;
+    }
+
+
+    .service-image {
+
+        height:
+            220px;
+    }
+
+
+    .service-body {
+
+        padding:
+            25px;
+    }
+
+
+    .capability-panel {
+
+        padding:
+            30px 22px;
+    }
+
+}
+
+</style>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="services-page">
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="services-hero">
+
+        <div class="services-hero-content">
+
+            <div class="service-eyebrow">
+
+                A&A ENTERPRISES
+
+            </div>
+
+
+            <h1>
+
+                Signage That
+
+                <br>
+
+                Makes Your Brand
+
+                <span>
+
+                    Stand Out
+
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                Complete signage, branding, fabrication and
+                installation solutions created to make your
+                business more visible, professional and memorable.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         INTRODUCTION
+    ====================================================== -->
+
+    <section class="services-intro">
+
+        <div class="container">
+
+            <div class="text-center">
+
+                <div class="section-label">
+
+                    WHAT WE DO
+
+                </div>
+
+
+                <h2 class="section-title">
+
+                    Complete Signage
+
+                    <br>
+
+                    Solutions Under One Roof
+
+                </h2>
+
+
+                <p class="service-intro-text mx-auto mt-4">
+
+                    From corporate signage and illuminated signs
+                    to fabrication, branding and installation,
+                    A&A Enterprises provides end-to-end solutions
+                    for businesses across different sectors.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         SERVICES
+    ====================================================== -->
+
+    <section class="services-grid">
+
+        <div class="container">
+
+            <div class="row g-4">
+
+
+                <!-- SERVICE 01 -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="service-card">
+
+                        <div class="service-image">
+
+                            <div class="service-number">
+                                01
+                            </div>
+
+
+                            <img
+                                src="{{ url_for('static', filename='images/services/corporate.jpg') }}"
+                                alt="Corporate Signage">
+
+                        </div>
+
+
+                        <div class="service-body">
+
+                            <h3>
+                                Corporate Signage
+                            </h3>
+
+
+                            <p>
+
+                                Premium indoor and outdoor
+                                corporate signage, reception
+                                branding, office branding and
+                                ACP boards.
+
+                            </p>
+
+
+                            <a
+                                href="{{ url_for('contact') }}"
+                                class="service-link">
+
+                                Discuss Your Requirement
+
+                                <i class="fas fa-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SERVICE 02 -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="service-card">
+
+                        <div class="service-image">
+
+                            <div class="service-number">
+                                02
+                            </div>
+
+
+                            <img
+                                src="{{ url_for('static', filename='images/services/led.jpg') }}"
+                                alt="LED Signage">
+
+                        </div>
+
+
+                        <div class="service-body">
+
+                            <h3>
+                                LED Signage
+                            </h3>
+
+
+                            <p>
+
+                                LED glow signs, channel letters,
+                                backlit boards and illuminated
+                                branding solutions.
+
+                            </p>
+
+
+                            <a
+                                href="{{ url_for('contact') }}"
+                                class="service-link">
+
+                                Discuss Your Requirement
+
+                                <i class="fas fa-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SERVICE 03 -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="service-card">
+
+                        <div class="service-image">
+
+                            <div class="service-number">
+                                03
+                            </div>
+
+
+                            <img
+                                src="{{ url_for('static', filename='images/services/acp.jpg') }}"
+                                alt="ACP Sign Boards">
+
+                        </div>
+
+
+                        <div class="service-body">
+
+                            <h3>
+                                ACP Sign Boards
+                            </h3>
+
+
+                            <p>
+
+                                High-quality ACP cladding with
+                                premium laser-cut acrylic and
+                                stainless-steel letters.
+
+                            </p>
+
+
+                            <a
+                                href="{{ url_for('contact') }}"
+                                class="service-link">
+
+                                Discuss Your Requirement
+
+                                <i class="fas fa-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SERVICE 04 -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="service-card">
+
+                        <div class="service-image">
+
+                            <div class="service-number">
+                                04
+                            </div>
+
+
+                            <img
+                                src="{{ url_for('static', filename='images/services/acrylic.jpg') }}"
+                                alt="Acrylic Signage">
+
+                        </div>
+
+
+                        <div class="service-body">
+
+                            <h3>
+                                Acrylic Signage
+                            </h3>
+
+
+                            <p>
+
+                                Crystal-clear acrylic signboards,
+                                office name boards and branding
+                                panels.
+
+                            </p>
+
+
+                            <a
+                                href="{{ url_for('contact') }}"
+                                class="service-link">
+
+                                Discuss Your Requirement
+
+                                <i class="fas fa-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SERVICE 05 -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="service-card">
+
+                        <div class="service-image">
+
+                            <div class="service-number">
+                                05
+                            </div>
+
+
+                            <img
+                                src="{{ url_for('static', filename='images/services/fabrication.jpg') }}"
+                                alt="Metal Fabrication">
+
+                        </div>
+
+
+                        <div class="service-body">
+
+                            <h3>
+                                Metal Fabrication
+                            </h3>
+
+
+                            <p>
+
+                                MS fabrication, SS fabrication,
+                                CNC cutting and custom fabrication
+                                work.
+
+                            </p>
+
+
+                            <a
+                                href="{{ url_for('contact') }}"
+                                class="service-link">
+
+                                Discuss Your Requirement
+
+                                <i class="fas fa-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SERVICE 06 -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="service-card">
+
+                        <div class="service-image">
+
+                            <div class="service-number">
+                                06
+                            </div>
+
+
+                            <img
+                                src="{{ url_for('static', filename='images/services/branding.jpg') }}"
+                                alt="Branding Solutions">
+
+                        </div>
+
+
+                        <div class="service-body">
+
+                            <h3>
+                                Branding Solutions
+                            </h3>
+
+
+                            <p>
+
+                                Retail branding, wall graphics,
+                                window graphics and complete
+                                brand identity solutions.
+
+                            </p>
+
+
+                            <a
+                                href="{{ url_for('contact') }}"
+                                class="service-link">
+
+                                Discuss Your Requirement
+
+                                <i class="fas fa-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SERVICE 07 -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="service-card">
+
+                        <div class="service-image">
+
+                            <div class="service-number">
+                                07
+                            </div>
+
+
+                            <img
+                                src="{{ url_for('static', filename='images/services/safety.jpg') }}"
+                                alt="Safety Signage">
+
+                        </div>
+
+
+                        <div class="service-body">
+
+                            <h3>
+                                Safety Signage
+                            </h3>
+
+
+                            <p>
+
+                                Industrial safety signs,
+                                fire exit signs, warning signs
+                                and compliance boards.
+
+                            </p>
+
+
+                            <a
+                                href="{{ url_for('contact') }}"
+                                class="service-link">
+
+                                Discuss Your Requirement
+
+                                <i class="fas fa-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SERVICE 08 -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="service-card">
+
+                        <div class="service-image">
+
+                            <div class="service-number">
+                                08
+                            </div>
+
+
+                            <img
+                                src="{{ url_for('static', filename='images/services/wayfinding.jpg') }}"
+                                alt="Wayfinding Signage">
+
+                        </div>
+
+
+                        <div class="service-body">
+
+                            <h3>
+                                Wayfinding Signage
+                            </h3>
+
+
+                            <p>
+
+                                Directional signage, directory
+                                boards and navigation systems
+                                for professional environments.
+
+                            </p>
+
+
+                            <a
+                                href="{{ url_for('contact') }}"
+                                class="service-link">
+
+                                Discuss Your Requirement
+
+                                <i class="fas fa-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SERVICE 09 -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="service-card">
+
+                        <div class="service-image">
+
+                            <div class="service-number">
+                                09
+                            </div>
+
+
+                            <img
+                                src="{{ url_for('static', filename='images/services/install.jpg') }}"
+                                alt="Professional Installation">
+
+                        </div>
+
+
+                        <div class="service-body">
+
+                            <h3>
+                                Installation
+                            </h3>
+
+
+                            <p>
+
+                                Professional installation carried
+                                out by trained and experienced
+                                technicians.
+
+                            </p>
+
+
+                            <a
+                                href="{{ url_for('contact') }}"
+                                class="service-link">
+
+                                Discuss Your Requirement
+
+                                <i class="fas fa-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         WORKING PROCESS
+    ====================================================== -->
+
+    <section class="process-section">
+
+        <div class="container">
+
+
+            <div class="text-center mb-5">
+
+                <div class="section-label">
+
+                    HOW WE WORK
+
+                </div>
+
+
+                <h2 class="section-title">
+
+                    From Concept
+
+                    <br>
+
+                    To Completion
+
+                </h2>
+
+            </div>
+
+
+            <div class="row g-4">
+
+
+                <!-- STEP 01 -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="process-card">
+
+                        <div class="process-number">
+                            01
+                        </div>
+
+
+                        <div class="process-icon">
+
+                            <i class="fas fa-comments"></i>
+
+                        </div>
+
+
+                        <h4>
+                            Consultation
+                        </h4>
+
+
+                        <p>
+
+                            Understanding your branding,
+                            signage requirements and project
+                            objectives.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- STEP 02 -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="process-card">
+
+                        <div class="process-number">
+                            02
+                        </div>
+
+
+                        <div class="process-icon">
+
+                            <i class="fas fa-pencil-ruler"></i>
+
+                        </div>
+
+
+                        <h4>
+                            Design
+                        </h4>
+
+
+                        <p>
+
+                            Developing signage concepts and
+                            designs according to the project
+                            requirements.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- STEP 03 -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="process-card">
+
+                        <div class="process-number">
+                            03
+                        </div>
+
+
+                        <div class="process-icon">
+
+                            <i class="fas fa-industry"></i>
+
+                        </div>
+
+
+                        <h4>
+                            Fabrication
+                        </h4>
+
+
+                        <p>
+
+                            Manufacturing signage using
+                            appropriate materials and
+                            professional workmanship.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- STEP 04 -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="process-card">
+
+                        <div class="process-number">
+                            04
+                        </div>
+
+
+                        <div class="process-icon">
+
+                            <i class="fas fa-tools"></i>
+
+                        </div>
+
+
+                        <h4>
+                            Installation
+                        </h4>
+
+
+                        <p>
+
+                            Safe transportation and professional
+                            installation at the project location.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CAPABILITIES
+    ====================================================== -->
+
+    <section class="capabilities-section">
+
+        <div class="container">
+
+            <div class="row align-items-center g-5">
+
+
+                <div class="col-lg-6">
+
+                    <div class="section-label">
+
+                        OUR APPROACH
+
+                    </div>
+
+
+                    <h2 class="section-title">
+
+                        More Than
+
+                        <br>
+
+                        Just Signage
+
+                    </h2>
+
+
+                    <p class="service-intro-text mt-4">
+
+                        Every project is approached with attention
+                        to design, material selection, fabrication,
+                        finishing and installation so the final
+                        result supports your brand presence.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="col-lg-6">
+
+                    <div class="capability-panel">
+
+                        <div class="section-label">
+
+                            PROJECT CAPABILITIES
+
+                        </div>
+
+
+                        <ul class="capability-list">
+
+
+                            <li>
+
+                                <i class="fas fa-check"></i>
+
+                                Design & Concept Development
+
+                            </li>
+
+
+                            <li>
+
+                                <i class="fas fa-check"></i>
+
+                                Fabrication & Manufacturing
+
+                            </li>
+
+
+                            <li>
+
+                                <i class="fas fa-check"></i>
+
+                                Indoor & Outdoor Signage
+
+                            </li>
+
+
+                            <li>
+
+                                <i class="fas fa-check"></i>
+
+                                Branding & Graphics
+
+                            </li>
+
+
+                            <li>
+
+                                <i class="fas fa-check"></i>
+
+                                Professional Installation
+
+                            </li>
+
+
+                            <li>
+
+                                <i class="fas fa-check"></i>
+
+                                Quality-Focused Execution
+
+                            </li>
+
+
+                            <li>
+
+                                <i class="fas fa-check"></i>
+
+                                PAN India Execution Capability
+
+                            </li>
+
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         STATISTICS
+    ====================================================== -->
+
+    <section class="service-stats">
+
+        <div class="container">
+
+            <div class="row text-center">
+
+
+                <div class="col-md-3 col-6">
+
+                    <div class="stat-number">
+                        500+
+                    </div>
+
+                    <div class="stat-label">
+                        Projects
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-3 col-6">
+
+                    <div class="stat-number">
+                        250+
+                    </div>
+
+                    <div class="stat-label">
+                        Clients
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-3 col-6">
+
+                    <div class="stat-number">
+                        15+
+                    </div>
+
+                    <div class="stat-label">
+                        Years Experience
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-3 col-6">
+
+                    <div class="stat-number">
+                        100%
+                    </div>
+
+                    <div class="stat-label">
+                        Quality Focus
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CTA
+    ====================================================== -->
+
+    <section class="services-cta">
+
+        <div class="container">
+
+
+            <div class="section-label">
+
+                START YOUR PROJECT
+
+            </div>
+
+
+            <h2>
+
+                Let's Create
+
+                <br>
+
+                Something Visible
+
+            </h2>
+
+
+            <p>
+
+                Tell us what you need and our team can help
+                develop the right signage and branding solution
+                for your business.
+
+            </p>
+
+
+            <a
+                href="{{ url_for('contact') }}"
+                class="cta-button">
+
+                GET A QUOTE
+
+                <i class="fas fa-arrow-right"></i>
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+</div>
+
+{% endblock %}

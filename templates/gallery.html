@@ -1,0 +1,411 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Gallery | A&A Enterprises
+{% endblock %}
+
+{% block css %}
+<style>
+
+.gallery-page {
+    background:#050505;
+    color:#fff;
+    overflow:hidden;
+}
+
+.gallery-hero {
+    min-height:70vh;
+    display:flex;
+    align-items:center;
+    position:relative;
+    background:
+        linear-gradient(90deg,
+        rgba(0,0,0,.95),
+        rgba(0,0,0,.68),
+        rgba(0,0,0,.35)),
+        url("/static/images/gallery/project1.jpg")
+        center/cover no-repeat;
+}
+
+.gallery-hero-content {
+    padding:150px 7% 100px;
+    position:relative;
+    z-index:2;
+}
+
+.gallery-label {
+    color:#e7b83d;
+    letter-spacing:6px;
+    font-size:11px;
+    font-weight:700;
+    margin-bottom:25px;
+}
+
+.gallery-hero h1 {
+    font-family:"Playfair Display",serif;
+    font-size:clamp(55px,8vw,110px);
+    line-height:.92;
+    margin:0;
+}
+
+.gallery-hero h1 span {
+    color:#e7b83d;
+}
+
+.gallery-hero p {
+    max-width:700px;
+    margin-top:30px;
+    color:rgba(255,255,255,.65);
+    line-height:1.8;
+}
+
+.gallery-section {
+    padding:110px 0;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(231,184,61,.07),transparent 30%),
+        #050505;
+}
+
+.gallery-card {
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:22px;
+    background:rgba(255,255,255,.04);
+    backdrop-filter:blur(18px);
+    box-shadow:0 25px 60px rgba(0,0,0,.45);
+    transition:.45s ease;
+}
+
+.gallery-card:hover {
+    transform:translateY(-12px) scale(1.01);
+    border-color:rgba(231,184,61,.5);
+    box-shadow:0 35px 80px rgba(0,0,0,.7);
+}
+
+.gallery-image {
+    width:100%;
+    height:310px;
+    object-fit:cover;
+    transition:.7s ease;
+}
+
+.gallery-card:hover .gallery-image {
+    transform:scale(1.08);
+}
+
+.gallery-body {
+    padding:25px;
+}
+
+.gallery-body h4 {
+    font-family:"Playfair Display",serif;
+    font-size:25px;
+}
+
+.gallery-body p {
+    color:rgba(255,255,255,.55);
+    font-size:14px;
+}
+
+.gallery-tag {
+    color:#e7b83d;
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.gallery-modal-content {
+    background:#080808;
+    border:1px solid rgba(231,184,61,.3);
+    border-radius:20px;
+}
+
+.gallery-modal-content img {
+    max-height:75vh;
+    object-fit:contain;
+}
+
+.gallery-stats {
+    padding:90px 0;
+    background:#080808;
+    border-top:1px solid rgba(255,255,255,.08);
+}
+
+.stat-number {
+    color:#e7b83d;
+    font-family:"Playfair Display",serif;
+    font-size:60px;
+}
+
+.stat-label {
+    color:rgba(255,255,255,.5);
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.gallery-cta {
+    padding:110px 20px;
+    text-align:center;
+    background:
+        radial-gradient(circle,rgba(231,184,61,.12),transparent 45%),
+        #050505;
+}
+
+.gallery-cta h2 {
+    font-family:"Playfair Display",serif;
+    font-size:clamp(45px,6vw,75px);
+}
+
+.gallery-cta p {
+    color:rgba(255,255,255,.6);
+    max-width:600px;
+    margin:20px auto 35px;
+}
+
+.gold-btn {
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    padding:16px 30px;
+    background:#e7b83d;
+    color:#050505;
+    text-decoration:none;
+    font-weight:700;
+    letter-spacing:2px;
+    font-size:11px;
+    transition:.3s;
+}
+
+.gold-btn:hover {
+    background:#fff;
+    color:#000;
+    transform:translateY(-4px);
+}
+
+@media(max-width:768px) {
+
+    .gallery-hero-content {
+        padding:130px 25px 80px;
+    }
+
+    .gallery-hero h1 {
+        font-size:55px;
+    }
+
+    .gallery-section {
+        padding:75px 0;
+    }
+
+    .gallery-image {
+        height:240px;
+    }
+}
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="gallery-page">
+
+<section class="gallery-hero">
+
+    <div class="gallery-hero-content">
+
+        <div class="gallery-label">
+            A&A ENTERPRISES
+        </div>
+
+        <h1>
+            Our
+            <br>
+            <span>Work.</span>
+        </h1>
+
+        <p>
+            Explore our collection of signage, branding,
+            fabrication and installation projects created
+            for businesses across different industries.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="gallery-section">
+
+<div class="container">
+
+    <div class="text-center mb-5">
+
+        <div class="gallery-label">
+            PROJECT GALLERY
+        </div>
+
+        <h2 class="display-4 fw-bold">
+            Built To Be Seen
+        </h2>
+
+    </div>
+
+
+    <div class="row g-4">
+
+        {% for i in range(12) %}
+
+        <div class="col-lg-4 col-md-6">
+
+            <div class="gallery-card">
+
+                <img
+                    src="{{ url_for('static',
+                    filename='images/gallery/project' ~ (i+1) ~ '.jpg') }}"
+                    class="gallery-image"
+                    data-bs-toggle="modal"
+                    data-bs-target="#galleryModal"
+                    onclick="changeImage(this.src)"
+                    alt="A&A Enterprises Project">
+
+                <div class="gallery-body">
+
+                    <div class="gallery-tag">
+                        A&A PROJECT
+                    </div>
+
+                    <h4 class="mt-2">
+                        Signage Project {{ i+1 }}
+                    </h4>
+
+                    <p>
+                        Signage, branding and fabrication
+                        solution executed by A&A Enterprises.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</section>
+
+
+<section class="gallery-stats">
+
+<div class="container">
+
+<div class="row text-center">
+
+<div class="col-md-3 col-6 mb-4">
+
+<div class="stat-number">500+</div>
+<div class="stat-label">Projects</div>
+
+</div>
+
+<div class="col-md-3 col-6 mb-4">
+
+<div class="stat-number">250+</div>
+<div class="stat-label">Clients</div>
+
+</div>
+
+<div class="col-md-3 col-6 mb-4">
+
+<div class="stat-number">15+</div>
+<div class="stat-label">Years Experience</div>
+
+</div>
+
+<div class="col-md-3 col-6 mb-4">
+
+<div class="stat-number">100%</div>
+<div class="stat-label">Quality Focus</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="gallery-cta">
+
+<div class="container">
+
+<h2>
+Have A Project In Mind?
+</h2>
+
+<p>
+Let's create signage and branding that makes
+your business stand out.
+</p>
+
+<a href="{{ url_for('contact') }}" class="gold-btn">
+GET A QUOTE
+<i class="fas fa-arrow-right"></i>
+</a>
+
+</div>
+
+</section>
+
+
+<div class="modal fade" id="galleryModal">
+
+<div class="modal-dialog modal-xl modal-dialog-centered">
+
+<div class="modal-content gallery-modal-content">
+
+<div class="modal-header border-0">
+
+<h5 class="text-white">
+Project Preview
+</h5>
+
+<button
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+</button>
+
+</div>
+
+<div class="modal-body text-center">
+
+<img
+id="modalImage"
+class="img-fluid rounded">
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+<script>
+
+function changeImage(src) {
+    document.getElementById("modalImage").src = src;
+}
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}
+        A&A Enterprises
+        {% endblock %}
+    </title>
+
+
+    <!-- BOOTSTRAP -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- FONT AWESOME -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- GOOGLE FONT -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- YOUR CSS -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+
+    {% block css %}
+    {% endblock %}
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     A&A GLOBAL NAVBAR
+     THIS APPEARS ON EVERY PAGE
+========================================================= -->
+
+<nav class="aa-navbar">
+
+
+    <div class="aa-navbar-left">
+
+
+        <!-- =================================================
+             THREE LINE MENU BUTTON
+        ================================================== -->
+
+        <button
+            type="button"
+            class="aa-menu-btn"
+            id="aaMenuButton"
+            aria-label="Open Menu"
+        >
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+
+        <!-- =================================================
+             COMPANY LOGO
+        ================================================== -->
+
+        <a
+            href="{{ url_for('home') }}"
+            class="aa-navbar-logo"
+        >
+
+            <img
+                src="{{ url_for(
+                    'static',
+                    filename='image/logo.png'
+                ) }}"
+                alt="A&A Enterprises Logo"
+            >
+
+        </a>
+
+
+        <!-- =================================================
+             COMPANY NAME
+        ================================================== -->
+
+        <a
+            href="{{ url_for('home') }}"
+            class="aa-navbar-name"
+        >
+
+            A&amp;A ENTERPRISES
+
+        </a>
+
+
+    </div>
+
+
+</nav>
+
+
+
+<!-- =========================================================
+     FULL SCREEN MENU
+========================================================= -->
+
+<div
+    class="aa-menu-overlay"
+    id="aaMenuOverlay"
+>
+
+
+    <!-- =====================================================
+         CLOSE BUTTON
+    ====================================================== -->
+
+    <button
+        type="button"
+        class="aa-menu-close"
+        id="aaMenuClose"
+        aria-label="Close Menu"
+    >
+
+        <i class="fas fa-times"></i>
+
+    </button>
+
+
+    <!-- =====================================================
+         MENU ITEMS
+    ====================================================== -->
+
+    <div class="aa-menu-container">
+
+
+        <!-- 01 HOME -->
+
+        <a
+            href="{{ url_for('home') }}"
+            class="aa-menu-item"
+        >
+
+            <span class="aa-menu-number">
+                01
+            </span>
+
+            <span class="aa-menu-label">
+                HOME
+            </span>
+
+        </a>
+
+
+        <!-- 02 ABOUT -->
+
+        <a
+            href="{{ url_for('about') }}"
+            class="aa-menu-item"
+        >
+
+            <span class="aa-menu-number">
+                02
+            </span>
+
+            <span class="aa-menu-label">
+                ABOUT US
+            </span>
+
+        </a>
+
+
+        <!-- 03 SERVICES -->
+
+        <a
+            href="{{ url_for('services') }}"
+            class="aa-menu-item"
+        >
+
+            <span class="aa-menu-number">
+                03
+            </span>
+
+            <span class="aa-menu-label">
+                SERVICES
+            </span>
+
+        </a>
+
+
+        <!-- 04 PROJECTS -->
+
+        <a
+            href="{{ url_for('projects') }}"
+            class="aa-menu-item"
+        >
+
+            <span class="aa-menu-number">
+                04
+            </span>
+
+            <span class="aa-menu-label">
+                PROJECTS
+            </span>
+
+        </a>
+
+
+        <!-- 05 GALLERY -->
+
+        <a
+            href="{{ url_for('gallery') }}"
+            class="aa-menu-item"
+        >
+
+            <span class="aa-menu-number">
+                05
+            </span>
+
+            <span class="aa-menu-label">
+                GALLERY
+            </span>
+
+        </a>
+
+
+        <!-- 06 CLIENTS -->
+
+        <a
+            href="{{ url_for('clients') }}"
+            class="aa-menu-item"
+        >
+
+            <span class="aa-menu-number">
+                06
+            </span>
+
+            <span class="aa-menu-label">
+                CLIENTS
+            </span>
+
+        </a>
+
+
+        <!-- 07 INFRASTRUCTURE -->
+
+        <a
+            href="{{ url_for('infrastructure') }}"
+            class="aa-menu-item"
+        >
+
+            <span class="aa-menu-number">
+                07
+            </span>
+
+            <span class="aa-menu-label">
+                INFRASTRUCTURE
+            </span>
+
+        </a>
+
+
+        <!-- 08 CONTACT -->
+
+        <a
+            href="{{ url_for('contact') }}"
+            class="aa-menu-item"
+        >
+
+            <span class="aa-menu-number">
+                08
+            </span>
+
+            <span class="aa-menu-label">
+                CONTACT US
+            </span>
+
+        </a>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     PAGE CONTENT
+========================================================= -->
+
+{% block content %}
+{% endblock %}
+
+
+
+<!-- =========================================================
+     MENU JAVASCRIPT
+========================================================= -->
+
+<script>
+
+
+/* =========================================================
+   MENU ELEMENTS
+========================================================= */
+
+const menuButton =
+    document.getElementById(
+        "aaMenuButton"
+    );
+
+
+const menuOverlay =
+    document.getElementById(
+        "aaMenuOverlay"
+    );
+
+
+const menuClose =
+    document.getElementById(
+        "aaMenuClose"
+    );
+
+
+
+/* =========================================================
+   OPEN MENU
+========================================================= */
+
+if (
+    menuButton &&
+    menuOverlay
+) {
+
+    menuButton.addEventListener(
+        "click",
+        function() {
+
+            menuOverlay.classList.add(
+                "active"
+            );
+
+            document.body.style.overflow =
+                "hidden";
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   CLOSE MENU
+========================================================= */
+
+if (
+    menuClose &&
+    menuOverlay
+) {
+
+    menuClose.addEventListener(
+        "click",
+        function() {
+
+            menuOverlay.classList.remove(
+                "active"
+            );
+
+            document.body.style.overflow =
+                "";
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   CLOSE MENU AFTER CLICKING PAGE
+========================================================= */
+
+if (menuOverlay) {
+
+    const menuLinks =
+        menuOverlay.querySelectorAll(
+            ".aa-menu-item"
+        );
+
+
+    menuLinks.forEach(
+        function(link) {
+
+            link.addEventListener(
+                "click",
+                function() {
+
+                    menuOverlay.classList.remove(
+                        "active"
+                    );
+
+                    document.body.style.overflow =
+                        "";
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Escape" &&
+            menuOverlay
+        ) {
+
+            menuOverlay.classList.remove(
+                "active"
+            );
+
+            document.body.style.overflow =
+                "";
+
+        }
+
+    }
+);
+
+</script>
+
+
+<!-- =========================================================
+     PAGE JAVASCRIPT
+========================================================= -->
+
+{% block scripts %}
+{% endblock %}
+
+
+</body>
+
+</html>
